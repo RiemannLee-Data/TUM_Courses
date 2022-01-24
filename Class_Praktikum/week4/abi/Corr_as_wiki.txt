@@ -1,0 +1,751 @@
+--------------------IMPORT--------------------------
+ Most positively correlated Import
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Food                   || High          || Import_growth || Gdp_per_capita_Growth || align="right"|      0.847716
+|-
+| Chemicals and Plastics || Low           || Import_growth || Gdp_per_capita_Growth || align="right"|      0.84103
+|}
+Most negatively correlated Import
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Guns      || Medium        || Import_growth || Gdp_per_capita_Growth || align="right"|      0.403433
+|-
+| Minerals  || Medium        || Import_growth || Gdp_per_capita_Growth || align="right"|      0.407688
+|}
+Most positively correlated Import in high income countries:
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Food      || High          || Import_growth || Gdp_per_capita_Growth || align="right"|      0.847716
+|-
+| Food      || High          || Import_growth || Population_Growth     || align="right"|      0.794665
+|}
+Most negatively correlated Import in high income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Minerals  || High          || Import_growth || Gdp_per_capita_Growth || align="right"|     -0.106422
+|-
+| Minerals  || High          || Import_growth || Population_Growth     || align="right"|     -0.030882
+|}
+Most positively correlated Import in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Food      || Medium        || Import_growth || Gdp_per_capita_Growth || align="right"|      0.714242
+|-
+| Food      || Medium        || Import_growth || Population_Growth     || align="right"|      0.632138
+|}
+Most negatively correlated Import in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product     !! Development   !! Value 1       !! Value 2           !! align="right"|   Correlation
+|-
+| Base Metals || Medium        || Import_growth || Population_Growth || align="right"|     0.0873292
+|-
+| Minerals    || Medium        || Import_growth || Population_Growth || align="right"|     0.195776
+|}
+Most positively correlated Import in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Chemicals and Plastics || Low           || Import_growth || Gdp_per_capita_Growth || align="right"|      0.84103
+|-
+| Guns                   || Low           || Import_growth || Population_Growth     || align="right"|      0.744789
+|}
+Most negatively correlated Import in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product     !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Minerals    || Low           || Import_growth || Gdp_per_capita_Growth || align="right"|      0.222583
+|-
+| Base Metals || Low           || Import_growth || Population_Growth     || align="right"|      0.360348
+|}
+--------------------EXPORT--------------------------
+ Most positively correlated Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Guns      || Low           || Export_growth || Population_Growth     || align="right"|      0.833931
+|-
+| Guns      || Low           || Export_growth || Gdp_per_capita_Growth || align="right"|      0.813465
+|}
+Most negatively correlated Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Minerals  || Medium        || Export_growth || Population_Growth     || align="right"|      0.425265
+|-
+| Minerals  || Medium        || Export_growth || Gdp_per_capita_Growth || align="right"|      0.499983
+|}
+Most positively correlated Export in high income countries:
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Chemicals and Plastics || High          || Export_growth || Population_Growth     || align="right"|      0.55988
+|-
+| Chemicals and Plastics || High          || Export_growth || Gdp_per_capita_Growth || align="right"|      0.526034
+|}
+Most negatively correlated Export in high income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product     !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Base Metals || High          || Export_growth || Gdp_per_capita_Growth || align="right"|   -0.10681
+|-
+| Base Metals || High          || Export_growth || Population_Growth     || align="right"|   -0.00853306
+|}
+Most positively correlated Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Chemicals and Plastics || Medium        || Export_growth || Gdp_per_capita_Growth || align="right"|      0.563462
+|-
+| Minerals               || Medium        || Export_growth || Gdp_per_capita_Growth || align="right"|      0.499983
+|}
+Most negatively correlated Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Guns      || Medium        || Export_growth || Population_Growth     || align="right"|   -0.00194198
+|-
+| Guns      || Medium        || Export_growth || Gdp_per_capita_Growth || align="right"|    0.12604
+|}
+Most positively correlated Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Guns      || Low           || Export_growth || Population_Growth     || align="right"|      0.833931
+|-
+| Guns      || Low           || Export_growth || Gdp_per_capita_Growth || align="right"|      0.813465
+|}
+Most negatively correlated Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Minerals  || Low           || Export_growth || Population_Growth     || align="right"|   -0.0278243
+|-
+| Minerals  || Low           || Export_growth || Gdp_per_capita_Growth || align="right"|    0.00161638
+|}
+--------------------IMPORT/EXPORT--------------------------
+ Most positively correlated Import/Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Guns      || High          || Net_Export || GDP_per_capita || align="right"|      0.749931
+|-
+| Guns      || Medium        || Net_Export || GDP_per_capita || align="right"|      0.473911
+|}
+Most negatively correlated Import/Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Guns      || Medium        || Net_Export || GDP_per_capita || align="right"|      0.473911
+|-
+| Guns      || High          || Net_Export || GDP_per_capita || align="right"|      0.749931
+|}
+Most positively correlated Import/Export in high income countries:
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Guns      || High          || Net_Export || GDP_per_capita || align="right"|      0.749931
+|}
+Most negatively correlated Import/Export in high income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Minerals  || High          || Net_Export || GDP_per_capita || align="right"|     -0.116359
+|}
+Most positively correlated Import/Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Guns      || Medium        || Net_Export || GDP_per_capita || align="right"|      0.473911
+|}
+Most negatively correlated Import/Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Minerals  || Medium        || Net_Export || GDP_per_capita || align="right"|       0.22862
+|}
+Most positively correlated Import/Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most negatively correlated Import/Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Guns      || Low           || Net_Export || GDP_per_capita || align="right"|     -0.183331
+|-
+| Minerals  || Low           || Net_Export || GDP_per_capita || align="right"|      0.373308
+|}
+--------------------IMPORT--------------------------
+ Most positively correlated Import
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Viet Nam   || Food                   || Low           || Import_growth || Gdp_per_capita_Growth || align="right"|      0.980934
+|-
+| Viet Nam   || Chemicals and Plastics || Low           || Import_growth || Gdp_per_capita_Growth || align="right"|      0.97008
+|}
+Most negatively correlated Import
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Turkey     || Chemicals and Plastics || Medium        || Import_growth || Gdp_per_capita_Growth || align="right"|      0.409228
+|-
+| China      || Base Metals            || Medium        || Import_growth || Population_Growth     || align="right"|      0.411468
+|}
+Most positively correlated Import in high income countries:
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter             !! Product     !! Development   !! Value 1       !! Value 2           !! align="right"|   Correlation
+|-
+| USA                  || Base Metals || High          || Import_growth || Population_Growth || align="right"|      0.960289
+|-
+| China, Hong Kong SAR || Food        || High          || Import_growth || Population_Growth || align="right"|      0.954517
+|}
+Most negatively correlated Import in high income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter             !! Product     !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| USA                  || Minerals    || High          || Import_growth || Gdp_per_capita_Growth || align="right"|     -0.718237
+|-
+| China, Hong Kong SAR || Base Metals || High          || Import_growth || Gdp_per_capita_Growth || align="right"|     -0.717847
+|}
+Most positively correlated Import in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| China      || Food      || Medium        || Import_growth || Gdp_per_capita_Growth || align="right"|      0.966947
+|-
+| Thailand   || Food      || Medium        || Import_growth || Population_Growth     || align="right"|      0.959379
+|}
+Most negatively correlated Import in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product                !! Development   !! Value 1       !! Value 2           !! align="right"|   Correlation
+|-
+| Mexico     || Chemicals and Plastics || Medium        || Import_growth || Population_Growth || align="right"|     -0.464739
+|-
+| Mexico     || Base Metals            || Medium        || Import_growth || Population_Growth || align="right"|     -0.404519
+|}
+Most positively correlated Import in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Viet Nam   || Food                   || Low           || Import_growth || Gdp_per_capita_Growth || align="right"|      0.980934
+|-
+| Viet Nam   || Chemicals and Plastics || Low           || Import_growth || Gdp_per_capita_Growth || align="right"|      0.97008
+|}
+Most negatively correlated Import in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product                !! Development   !! Value 1       !! Value 2           !! align="right"|   Correlation
+|-
+| Nigeria    || Base Metals            || Low           || Import_growth || Population_Growth || align="right"|     -0.699634
+|-
+| Nigeria    || Chemicals and Plastics || Low           || Import_growth || Population_Growth || align="right"|     -0.422452
+|}
+--------------------EXPORT--------------------------
+ Most positively correlated Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| China      || Chemicals and Plastics || Medium        || Export_growth || Gdp_per_capita_Growth || align="right"|      0.96254
+|-
+| USA        || Guns                   || High          || Export_growth || Gdp_per_capita_Growth || align="right"|      0.952396
+|}
+Most negatively correlated Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter             !! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| China, Hong Kong SAR || Guns                   || High          || Export_growth || Population_Growth     || align="right"|      0.4028
+|-
+| Brazil               || Chemicals and Plastics || Medium        || Export_growth || Gdp_per_capita_Growth || align="right"|      0.407559
+|}
+Most positively correlated Export in high income countries:
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter      !! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| USA           || Guns                   || High          || Export_growth || Gdp_per_capita_Growth || align="right"|      0.952396
+|-
+| Rep. of Korea || Chemicals and Plastics || High          || Export_growth || Population_Growth     || align="right"|      0.914217
+|}
+Most negatively correlated Export in high income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter             !! Product     !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| China, Hong Kong SAR || Base Metals || High          || Export_growth || Gdp_per_capita_Growth || align="right"|     -0.826512
+|-
+| Germany              || Base Metals || High          || Export_growth || Population_Growth     || align="right"|     -0.522015
+|}
+Most positively correlated Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| China      || Chemicals and Plastics || Medium        || Export_growth || Gdp_per_capita_Growth || align="right"|      0.96254
+|-
+| China      || Chemicals and Plastics || Medium        || Export_growth || Population_Growth     || align="right"|      0.939501
+|}
+Most negatively correlated Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Mexico     || Guns      || Medium        || Export_growth || Population_Growth     || align="right"|     -0.817666
+|-
+| Mexico     || Guns      || Medium        || Export_growth || Gdp_per_capita_Growth || align="right"|     -0.776815
+|}
+Most positively correlated Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product                !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| India      || Chemicals and Plastics || Low           || Export_growth || Population_Growth     || align="right"|      0.933528
+|-
+| India      || Chemicals and Plastics || Low           || Export_growth || Gdp_per_capita_Growth || align="right"|      0.910784
+|}
+Most negatively correlated Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| Viet Nam   || Minerals  || Low           || Export_growth || Gdp_per_capita_Growth || align="right"|     -0.610091
+|-
+| Pakistan   || Minerals  || Low           || Export_growth || Gdp_per_capita_Growth || align="right"|     -0.597487
+|}
+--------------------IMPORT/EXPORT--------------------------
+ Most positively correlated Import/Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| USA        || Minerals  || High          || Net_Export || GDP_per_capita || align="right"|      0.924078
+|-
+| USA        || Guns      || High          || Net_Export || GDP_per_capita || align="right"|      0.910402
+|}
+Most negatively correlated Import/Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter      !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Rep. of Korea || Guns      || High          || Net_Export || GDP_per_capita || align="right"|      0.649722
+|-
+| Nigeria       || Minerals  || Low           || Net_Export || GDP_per_capita || align="right"|      0.729542
+|}
+Most positively correlated Import/Export in high income countries:
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| USA        || Minerals  || High          || Net_Export || GDP_per_capita || align="right"|      0.924078
+|-
+| USA        || Guns      || High          || Net_Export || GDP_per_capita || align="right"|      0.910402
+|}
+Most negatively correlated Import/Export in high income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter             !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| China, Hong Kong SAR || Guns      || High          || Net_Export || GDP_per_capita || align="right"|     -0.752583
+|-
+| Japan                || Guns      || High          || Net_Export || GDP_per_capita || align="right"|     -0.384459
+|}
+Most positively correlated Import/Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| China      || Guns      || Medium        || Net_Export || GDP_per_capita || align="right"|      0.824363
+|}
+Most negatively correlated Import/Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Thailand   || Guns      || Medium        || Net_Export || GDP_per_capita || align="right"|     -0.85546
+|-
+| China      || Minerals  || Medium        || Net_Export || GDP_per_capita || align="right"|     -0.705832
+|}
+Most positively correlated Import/Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| India      || Guns      || Low           || Net_Export || GDP_per_capita || align="right"|      0.809723
+|-
+| Nigeria    || Minerals  || Low           || Net_Export || GDP_per_capita || align="right"|      0.729542
+|}
+Most negatively correlated Import/Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Viet Nam   || Minerals  || Low           || Net_Export || GDP_per_capita || align="right"|     -0.83965
+|-
+| Egypt      || Guns      || Low           || Net_Export || GDP_per_capita || align="right"|     -0.759872
+|}
+--------------------IMPORT--------------------------
+ Most positively correlated Import
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| All       || Low           || Import_growth || Gdp_per_capita_growth || align="right"|      0.955655
+|-
+| All       || Low           || Import_growth || Population_growth     || align="right"|      0.902074
+|}
+Most negatively correlated Import
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| All       || Medium        || Import_growth || Gdp_per_capita_growth || align="right"|      0.71089
+|-
+| All       || Medium        || Import_growth || Population_growth     || align="right"|      0.732791
+|}
+Most positively correlated Import in high income countries:
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most negatively correlated Import in high income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| All       || High          || Import_growth || Gdp_per_capita_growth || align="right"|     0.0529187
+|-
+| All       || High          || Import_growth || Population_growth     || align="right"|     0.0561508
+|}
+Most positively correlated Import in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| All       || Medium        || Import_growth || Population_growth     || align="right"|      0.732791
+|-
+| All       || Medium        || Import_growth || Gdp_per_capita_growth || align="right"|      0.71089
+|}
+Most negatively correlated Import in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most positively correlated Import in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| All       || Low           || Import_growth || Gdp_per_capita_growth || align="right"|      0.955655
+|-
+| All       || Low           || Import_growth || Population_growth     || align="right"|      0.902074
+|}
+Most negatively correlated Import in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+--------------------EXPORT--------------------------
+ Most positively correlated Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| All       || Medium        || Export_growth || Gdp_per_capita_growth || align="right"|      0.655849
+|-
+| All       || Medium        || Export_growth || Gdp_per_capita_growth || align="right"|      0.655849
+|}
+Most negatively correlated Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| All       || Low           || Export_growth || Gdp_per_capita_growth || align="right"|      0.458698
+|-
+| All       || Low           || Export_growth || Gdp_per_capita_growth || align="right"|      0.458698
+|}
+Most positively correlated Export in high income countries:
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most negatively correlated Export in high income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| All       || High          || Export_growth || Gdp_per_capita_growth || align="right"|      0.376868
+|-
+| All       || High          || Export_growth || Gdp_per_capita_growth || align="right"|      0.376868
+|}
+Most positively correlated Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| All       || Medium        || Export_growth || Gdp_per_capita_growth || align="right"|      0.655849
+|-
+| All       || Medium        || Export_growth || Gdp_per_capita_growth || align="right"|      0.655849
+|}
+Most negatively correlated Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most positively correlated Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1       !! Value 2               !! align="right"|   Correlation
+|-
+| All       || Low           || Export_growth || Gdp_per_capita_growth || align="right"|      0.458698
+|-
+| All       || Low           || Export_growth || Gdp_per_capita_growth || align="right"|      0.458698
+|}
+Most negatively correlated Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+--------------------IMPORT/EXPORT--------------------------
+ Most positively correlated Import/Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most negatively correlated Import/Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most positively correlated Import/Export in high income countries:
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most negatively correlated Import/Export in high income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| All       || High          || Net_Export || GDP_per_capita || align="right"|     -0.562807
+|}
+Most positively correlated Import/Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most negatively correlated Import/Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| All       || Medium        || Net_Export || GDP_per_capita || align="right"|      0.188188
+|}
+Most positively correlated Import/Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most negatively correlated Import/Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| All       || Low           || Net_Export || GDP_per_capita || align="right"|      0.285428
+|}
+--------------------IMPORT/EXPORT--------------------------
+ Most positively correlated Import/Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter      !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Nigeria       || All       || Low           || Net_Export || GDP_per_capita || align="right"|      0.704267
+|-
+| Rep. of Korea || All       || High          || Net_Export || GDP_per_capita || align="right"|      0.448298
+|}
+Most negatively correlated Import/Export
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter      !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Rep. of Korea || All       || High          || Net_Export || GDP_per_capita || align="right"|      0.448298
+|-
+| Nigeria       || All       || Low           || Net_Export || GDP_per_capita || align="right"|      0.704267
+|}
+Most positively correlated Import/Export in high income countries:
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter      !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Rep. of Korea || All       || High          || Net_Export || GDP_per_capita || align="right"|      0.448298
+|}
+Most negatively correlated Import/Export in high income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter             !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| China, Hong Kong SAR || All       || High          || Net_Export || GDP_per_capita || align="right"|    -0.700822
+|-
+| Japan                || All       || High          || Net_Export || GDP_per_capita || align="right"|    -0.0410806
+|}
+Most positively correlated Import/Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+!
+|-
+|}
+Most negatively correlated Import/Export in medium income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| China      || All       || Medium        || Net_Export || GDP_per_capita || align="right"|     -0.57941
+|-
+| Turkey     || All       || Medium        || Net_Export || GDP_per_capita || align="right"|     -0.404273
+|}
+Most positively correlated Import/Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Nigeria    || All       || Low           || Net_Export || GDP_per_capita || align="right"|      0.704267
+|}
+Most negatively correlated Import/Export in low income countries: 
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter   !! Product   !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Viet Nam   || All       || Low           || Net_Export || GDP_per_capita || align="right"|     -0.962453
+|-
+| Pakistan   || All       || Low           || Net_Export || GDP_per_capita || align="right"|     -0.606016
+|}

@@ -1,0 +1,9 @@
+{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! Reporter      !! Development   !! Value 1    !! Value 2        !! align="right"|   Correlation
+|-
+| Nigeria       || Low           || Net Export || GDP per capita || align="right"|      0.704267
+|-
+| Rep. of Korea || High          || Net Export || GDP per capita || align="right"|      0.448298
+|}

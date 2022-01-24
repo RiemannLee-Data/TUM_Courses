@@ -1,0 +1,563 @@
+--------------------IMPORT--------------------------
+Most positively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+Food	High	Import_growth	Gdp_per_capita_Growth	0.8477156993045146
+Chemicals and Plastics	Low	Import_growth	Gdp_per_capita_Growth	0.8410303820008684
+
+
+Most negatively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+Guns	Medium	Import_growth	Gdp_per_capita_Growth	0.40343347685524783
+Minerals	Medium	Import_growth	Gdp_per_capita_Growth	0.407687752533117
+
+
+Most positively correlated in high income countries: 
+Product_Type                     Food
+Development                      High
+Corr_x                  Import_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                         0.847716
+Name: 14, dtype: object
+
+Most negatively correlated in high income countries: 
+Product_Type                 Minerals
+Development                      High
+Corr_x                  Import_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                        -0.106422
+Name: 22, dtype: object
+
+Most positively correlated in medium income countries: 
+Product_Type                     Food
+Development                    Medium
+Corr_x                  Import_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                         0.714242
+Name: 64, dtype: object
+
+Most negatively correlated in medium income countries: 
+Product_Type          Base Metals
+Development                Medium
+Corr_x              Import_growth
+Corr_y          Population_Growth
+Corr                    0.0873292
+Name: 55, dtype: object
+
+Most positively correlated in low income countries: 
+Product_Type    Chemicals and Plastics
+Development                        Low
+Corr_x                   Import_growth
+Corr_y           Gdp_per_capita_Growth
+Corr                           0.84103
+Name: 36, dtype: object
+
+Most negatively correlated in low income countries: 
+Product_Type                 Minerals
+Development                       Low
+Corr_x                  Import_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                         0.222583
+Name: 47, dtype: object
+
+--------------------EXPORT--------------------------
+Most positively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+Guns	Low	Export_growth	Population_Growth	0.8339311286572397
+Guns	Low	Export_growth	Gdp_per_capita_Growth	0.8134649163482915
+
+
+Most negatively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+Minerals	Medium	Export_growth	Population_Growth	0.42526497651946465
+Minerals	Medium	Export_growth	Gdp_per_capita_Growth	0.4999829379299492
+
+
+Most positively correlated in high income countries: 
+Product_Type    Chemicals and Plastics
+Development                       High
+Corr_x                   Export_growth
+Corr_y               Population_Growth
+Corr                           0.55988
+Name: 10, dtype: object
+
+Most negatively correlated in high income countries: 
+Product_Type              Base Metals
+Development                      High
+Corr_x                  Export_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                         -0.10681
+Name: 8, dtype: object
+
+Most positively correlated in medium income countries: 
+Product_Type    Chemicals and Plastics
+Development                     Medium
+Corr_x                   Export_growth
+Corr_y           Gdp_per_capita_Growth
+Corr                          0.563462
+Name: 62, dtype: object
+
+Most negatively correlated in medium income countries: 
+Product_Type                 Guns
+Development                Medium
+Corr_x              Export_growth
+Corr_y          Population_Growth
+Corr                  -0.00194198
+Name: 66, dtype: object
+
+Most positively correlated in low income countries: 
+Product_Type                 Guns
+Development                   Low
+Corr_x              Export_growth
+Corr_y          Population_Growth
+Corr                     0.833931
+Name: 41, dtype: object
+
+Most negatively correlated in low income countries: 
+Product_Type             Minerals
+Development                   Low
+Corr_x              Export_growth
+Corr_y          Population_Growth
+Corr                   -0.0278243
+Name: 46, dtype: object
+
+--------------------BOTH--------------------------
+Most positively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+Guns	High	Net_Export	GDP_per_capita	0.7499309293633734
+Guns	Medium	Net_Export	GDP_per_capita	0.4739105461907489
+
+
+Most negatively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+Guns	Medium	Net_Export	GDP_per_capita	0.4739105461907489
+Guns	High	Net_Export	GDP_per_capita	0.7499309293633734
+
+
+Most positively correlated in high income countries: 
+Product_Type              Guns
+Development               High
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  0.749931
+Name: 19, dtype: object
+
+Most negatively correlated in high income countries: 
+Product_Type          Minerals
+Development               High
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                 -0.116359
+Name: 24, dtype: object
+
+Most positively correlated in medium income countries: 
+Product_Type              Guns
+Development             Medium
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  0.473911
+Name: 69, dtype: object
+
+Most negatively correlated in medium income countries: 
+Product_Type          Minerals
+Development             Medium
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                   0.22862
+Name: 74, dtype: object
+
+No Positive correlation in low income countries
+
+Most negatively correlated in low income countries: 
+Product_Type              Guns
+Development                Low
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                 -0.183331
+Name: 44, dtype: object
+
+--------------------IMPORT--------------------------
+Most positively correlated:
+Reporter	Product_Type	Development	Corr_x	Corr_y	Corr
+Viet Nam	Food	Low	Import_growth	Gdp_per_capita_Growth	0.9809341711415009
+Viet Nam	Chemicals and Plastics	Low	Import_growth	Gdp_per_capita_Growth	0.9700802535386688
+
+
+Most negatively correlated:
+Reporter	Product_Type	Development	Corr_x	Corr_y	Corr
+Turkey	Chemicals and Plastics	Medium	Import_growth	Gdp_per_capita_Growth	0.4092279711467299
+China	Base Metals	Medium	Import_growth	Population_Growth	0.4114678489504179
+
+
+Most positively correlated in high income countries: 
+Reporter                      USA
+Product_Type          Base Metals
+Development                  High
+Corr_x              Import_growth
+Corr_y          Population_Growth
+Corr                     0.960289
+Name: 274, dtype: object
+
+Most negatively correlated in high income countries: 
+Reporter                          USA
+Product_Type                 Minerals
+Development                      High
+Corr_x                  Import_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                        -0.718237
+Name: 291, dtype: object
+
+Most positively correlated in medium income countries: 
+Reporter                        China
+Product_Type                     Food
+Development                    Medium
+Corr_x                  Import_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                         0.966947
+Name: 31, dtype: object
+
+Most negatively correlated in medium income countries: 
+Reporter                        Mexico
+Product_Type    Chemicals and Plastics
+Development                     Medium
+Corr_x                   Import_growth
+Corr_y               Population_Growth
+Corr                         -0.464739
+Name: 152, dtype: object
+
+Most positively correlated in low income countries: 
+Reporter                     Viet Nam
+Product_Type                     Food
+Development                       Low
+Corr_x                  Import_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                         0.980934
+Name: 304, dtype: object
+
+Most negatively correlated in low income countries: 
+Reporter                  Nigeria
+Product_Type          Base Metals
+Development                   Low
+Corr_x              Import_growth
+Corr_y          Population_Growth
+Corr                    -0.699634
+Name: 169, dtype: object
+
+--------------------EXPORT--------------------------
+Most positively correlated:
+Reporter	Product_Type	Development	Corr_x	Corr_y	Corr
+China	Chemicals and Plastics	Medium	Export_growth	Gdp_per_capita_Growth	0.9625403227760213
+USA	Guns	High	Export_growth	Gdp_per_capita_Growth	0.9523961177794733
+
+
+Most negatively correlated:
+Reporter	Product_Type	Development	Corr_x	Corr_y	Corr
+China, Hong Kong SAR	Guns	High	Export_growth	Population_Growth	0.40279963960833076
+Brazil	Chemicals and Plastics	Medium	Export_growth	Gdp_per_capita_Growth	0.40755904749289307
+
+
+Most positively correlated in high income countries: 
+Reporter                          USA
+Product_Type                     Guns
+Development                      High
+Corr_x                  Export_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                         0.952396
+Name: 287, dtype: object
+
+Most negatively correlated in high income countries: 
+Reporter         China, Hong Kong SAR
+Product_Type              Base Metals
+Development                      High
+Corr_x                  Export_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                        -0.826512
+Name: 46, dtype: object
+
+Most positively correlated in medium income countries: 
+Reporter                         China
+Product_Type    Chemicals and Plastics
+Development                     Medium
+Corr_x                   Export_growth
+Corr_y           Gdp_per_capita_Growth
+Corr                           0.96254
+Name: 29, dtype: object
+
+Most negatively correlated in medium income countries: 
+Reporter                   Mexico
+Product_Type                 Guns
+Development                Medium
+Corr_x              Export_growth
+Corr_y          Population_Growth
+Corr                    -0.817666
+Name: 159, dtype: object
+
+Most positively correlated in low income countries: 
+Reporter                         India
+Product_Type    Chemicals and Plastics
+Development                        Low
+Corr_x                   Export_growth
+Corr_y               Population_Growth
+Corr                          0.933528
+Name: 111, dtype: object
+
+Most negatively correlated in low income countries: 
+Reporter                     Viet Nam
+Product_Type                 Minerals
+Development                       Low
+Corr_x                  Export_growth
+Corr_y          Gdp_per_capita_Growth
+Corr                        -0.610091
+Name: 308, dtype: object
+
+--------------------BOTH--------------------------
+Most positively correlated:
+Reporter	Product_Type	Development	Corr_x	Corr_y	Corr
+USA	Minerals	High	Net_Export	GDP_per_capita	0.9240783844542549
+USA	Guns	High	Net_Export	GDP_per_capita	0.9104022822431539
+
+
+Most negatively correlated:
+Reporter	Product_Type	Development	Corr_x	Corr_y	Corr
+Rep. of Korea	Guns	High	Net_Export	GDP_per_capita	0.6497216719602967
+Nigeria	Minerals	Low	Net_Export	GDP_per_capita	0.7295419422452569
+
+
+Most positively correlated in high income countries: 
+Reporter                   USA
+Product_Type          Minerals
+Development               High
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  0.924078
+Name: 293, dtype: object
+
+Most negatively correlated in high income countries: 
+Reporter        China, Hong Kong SAR
+Product_Type                    Guns
+Development                     High
+Corr_x                    Net_Export
+Corr_y                GDP_per_capita
+Corr                       -0.752583
+Name: 57, dtype: object
+
+Most positively correlated in medium income countries: 
+Reporter                 China
+Product_Type              Guns
+Development             Medium
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  0.824363
+Name: 36, dtype: object
+
+Most negatively correlated in medium income countries: 
+Reporter              Thailand
+Product_Type              Guns
+Development             Medium
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  -0.85546
+Name: 246, dtype: object
+
+Most positively correlated in low income countries: 
+Reporter                 India
+Product_Type              Guns
+Development                Low
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  0.809723
+Name: 120, dtype: object
+
+Most negatively correlated in low income countries: 
+Reporter              Viet Nam
+Product_Type          Minerals
+Development                Low
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  -0.83965
+Name: 309, dtype: object
+
+--------------------IMPORT--------------------------
+Most positively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+All	Low	Import_growth	Gdp_per_capita_growth	0.9556554561418672
+All	Low	Import_growth	Population_growth	0.9020737972782219
+
+
+Most negatively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+All	Medium	Import_growth	Gdp_per_capita_growth	0.710890030222655
+All	Medium	Import_growth	Population_growth	0.732790596130722
+
+
+No Positive correlation in high income countries
+
+Most negatively correlated in high income countries: 
+Product_Type                      All
+Development                      High
+Corr_x                  Import_growth
+Corr_y          Gdp_per_capita_growth
+Corr                        0.0529187
+Name: 0, dtype: object
+
+Most positively correlated in medium income countries: 
+Product_Type                  All
+Development                Medium
+Corr_x              Import_growth
+Corr_y          Population_growth
+Corr                     0.732791
+Name: 51, dtype: object
+
+No negative correlation in medium income countries
+
+Most positively correlated in low income countries: 
+Product_Type                      All
+Development                       Low
+Corr_x                  Import_growth
+Corr_y          Gdp_per_capita_growth
+Corr                         0.955655
+Name: 25, dtype: object
+
+No negative correlation in low income countries
+
+--------------------EXPORT--------------------------
+Most positively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+All	Medium	Export_growth	Gdp_per_capita_growth	0.6558488437985902
+All	Medium	Export_growth	Gdp_per_capita_growth	0.6558488437985902
+
+
+Most negatively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+All	Low	Export_growth	Gdp_per_capita_growth	0.45869828038809024
+All	Low	Export_growth	Gdp_per_capita_growth	0.45869828038809024
+
+
+No Positive correlation in high income countries
+
+Most negatively correlated in high income countries: 
+Product_Type                      All
+Development                      High
+Corr_x                  Export_growth
+Corr_y          Gdp_per_capita_growth
+Corr                         0.376868
+Name: 2, dtype: object
+
+Most positively correlated in medium income countries: 
+Product_Type                      All
+Development                    Medium
+Corr_x                  Export_growth
+Corr_y          Gdp_per_capita_growth
+Corr                         0.655849
+Name: 52, dtype: object
+
+No negative correlation in medium income countries
+
+Most positively correlated in low income countries: 
+Product_Type                      All
+Development                       Low
+Corr_x                  Export_growth
+Corr_y          Gdp_per_capita_growth
+Corr                         0.458698
+Name: 27, dtype: object
+
+No negative correlation in low income countries
+
+--------------------BOTH--------------------------
+Most positively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+
+
+Most negatively correlated:
+Product_Type	Development	Corr_x	Corr_y	Corr
+
+
+No Positive correlation in high income countries
+
+Most negatively correlated in high income countries: 
+Product_Type               All
+Development               High
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                 -0.562807
+Name: 4, dtype: object
+
+No Positive correlation in medium income countries
+
+Most negatively correlated in medium income countries: 
+Product_Type               All
+Development             Medium
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  0.188188
+Name: 54, dtype: object
+
+No Positive correlation in low income countries
+
+Most negatively correlated in low income countries: 
+Product_Type               All
+Development                Low
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  0.285428
+Name: 29, dtype: object
+
+--------------------BOTH--------------------------
+Most positively correlated:
+Reporter	Product_Type	Development	Corr_x	Corr_y	Corr
+Nigeria	All	Low	Net_Export	GDP_per_capita	0.7042670807575986
+Rep. of Korea	All	High	Net_Export	GDP_per_capita	0.4482982458602484
+
+
+Most negatively correlated:
+Reporter	Product_Type	Development	Corr_x	Corr_y	Corr
+Rep. of Korea	All	High	Net_Export	GDP_per_capita	0.4482982458602484
+Nigeria	All	Low	Net_Export	GDP_per_capita	0.7042670807575986
+
+
+Most positively correlated in high income countries: 
+Reporter         Rep. of Korea
+Product_Type               All
+Development               High
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  0.448298
+Name: 210, dtype: object
+
+Most negatively correlated in high income countries: 
+Reporter        China, Hong Kong SAR
+Product_Type                     All
+Development                     High
+Corr_x                    Net_Export
+Corr_y                GDP_per_capita
+Corr                       -0.700822
+Name: 42, dtype: object
+
+No Positive correlation in medium income countries
+
+Most negatively correlated in medium income countries: 
+Reporter                 China
+Product_Type               All
+Development             Medium
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  -0.57941
+Name: 21, dtype: object
+
+Most positively correlated in low income countries: 
+Reporter               Nigeria
+Product_Type               All
+Development                Low
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                  0.704267
+Name: 168, dtype: object
+
+Most negatively correlated in low income countries: 
+Reporter              Viet Nam
+Product_Type               All
+Development                Low
+Corr_x              Net_Export
+Corr_y          GDP_per_capita
+Corr                 -0.962453
+Name: 294, dtype: object
+
