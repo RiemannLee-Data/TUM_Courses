@@ -1,0 +1,5 @@
+-5pt for using a dense matrix
+
+-0pt not having D[D == 0] = 1
+
+-5pt for using a dense matrix

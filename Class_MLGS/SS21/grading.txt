@@ -1,0 +1,13 @@
+You lost a term during the computation
+
+You confuse the "+" and "-" during the computation
+
+You confuse the "x" and "u" during the computation
+
+Justification is incomplete
+
+Explanantion is too brief
+
+Wrong version
+
+Completely wrong

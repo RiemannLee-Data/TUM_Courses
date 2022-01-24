@@ -1,0 +1,28 @@
+-2pts for using batch_size instead of x.shape[0] to calculate accuracy (last batch may have fewer elements);
+
+-2pts for not setting x.requires_grad to true in L_inf attack;
+
+-3pts for missing the l1 norm;
+
+-3pts for using the wrong dimensions when computing the l1 and l2 norm;
+
+-3pts for using the wrong function when computing the radius
+(should be probability density function instead of cumulative distribution function)
+
+-3pts for using the self.predict to get top_class;
+
+-2pts for not using the actual 2 top classes for binomial abstain test;
+
+-3pts for abstaining under wrong condition (i.e. in the direction of test < alpha);
+
+-2pts for no num_remaining post-processing;
+
+-3pts for applying additional softmax on logits
+
+Ambiguous problem statement here, please refer to the solution for another way of thinking
+
+also please refer to the solution for the correct scaling method, we don't deduct more points for the ambiguous statement.
+
+
+
+

@@ -1,0 +1,22 @@
+-2pt for not filtering out the (i, i) case;
+
+-2pt for the overflow of the right_window's index, which in your logic should be
+should be i+1: min(i+window_size, len(sentence))
+
+-1pt for not vectorizing;
+
+-2pt for a numerically unstable implementation;
+
+-2pt for other implementation mistakes such as wrongly using the axis parameter;
+
+-2pt for using the wrong axis when calling the softmax function
+
+-2pt for losing minus "-" before total loss
+
+-5pt for incorrectly computing d_logit
+
+-2pt for neglecting the coefficients 1/M;
+
+-2pt for the false relationship among w_a, w_b and w_d;
+
+-2pt for the redundant computation of embedding vector of word a,b,d;
