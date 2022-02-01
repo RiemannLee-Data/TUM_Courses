@@ -1,0 +1,209 @@
+\documentclass{article}
+
+\usepackage[final]{style}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{verbatim}
+\usepackage{graphicx}       % for figures
+
+\usepackage{amsmath,bm}
+
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+
+% Self-defined macros
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\proba}[1]{\mathsf{P}(#1)}
+\newcommand{\expect}[1]{\mathsf{E}[#1]}
+\newcommand{\var}[1]{\mathsf{Var}(#1)}
+\newcommand\defeq{\stackrel{\text{!}}{=}}
+
+\title{Exercise 04 of Machine Learning [IN 2064]}
+
+\author{
+  Name: Yiman Li \\
+  \textbf{Matr-Nr: 03724352} \\
+  cooperate with Kejia Chen(03729686)\\
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+To find the minimun of the function $E_{weighted}(\bm{w})$, first define a scalar factor matrix:
+\[\bm{T}=\mathrm{diag}(t_1, t_2,\dots, t_n) \in \mathbb{R}^{N\times N} \]
+Then compute the gradient $\nabla_{\bm{w}}E_{weighted}(\bm{w})$:
+\begin{equation}
+	\begin{aligned}
+	\nabla_{\bm{w}}E_{weighted}(\bm{w}) 
+	&= \nabla_{\bm{w}} \frac{1}{2}\sum_{i=1}^{N}t_i[\bm{w}^T\phi(\bm{x}_i)-y_i]^2\\
+	&= \nabla_{\bm{w}} \frac{1}{2}(\bm{\Phi w} - \bm{y})^T \bm{T} (\bm{\Phi w} - \bm{y})\\
+	&= \nabla_{\bm{w}} \frac{1}{2}(\bm{w}^T\bm{\Phi}^T\bm{T\Phi w} - 2\bm{w}^T\bm{\Phi}^T\bm{Ty} +\bm{y}^T\bm{y})\\
+	&= \bm{\Phi}^T\bm{T\Phi w}-\bm{\Phi}^T\bm{Ty}
+	\end{aligned}
+\end{equation}
+Now set the gradient to zero and solver for $\bm{w}$ to obtain the minimizer
+\begin{equation}
+\bm{\Phi}^T\bm{T\Phi w}-\bm{\Phi}^T\bm{Ty} = 0
+\end{equation}
+This leads to the closed form solution for ridge regression error function:
+\begin{equation}
+\bm{w}^* = (\bm{\Phi}^T\bm{T\Phi})^{-1}\bm{\Phi}^T\bm{Ty}
+\end{equation}
+(1)\ In terms of the noise on the data, assuming the target variable $y$ is given by a deterministic function $f(\bm{x}, \bm{w})$ with additive Gaussian noise so that
+\begin{equation}
+y_i = f(\bm{x_i}, \bm{w}) +\epsilon_i
+\end{equation}
+where $\epsilon_i$ is a zero mean Gaussian random variable with precision $\beta_i$. Thus we can write
+\begin{equation}
+p(y_i|\bm{x_i}, \bm{w}, \beta_i) = \mathcal{N}(t|y(\bm{x}, \bm{w}), \beta_i^{-1})
+\end{equation}
+Taking the logarithm of the likelihood function, we have
+\begin{equation}
+\begin{aligned}
+\mathrm{ln}\ p(\bm{y}|\bm{X}, \bm{w}, \bm{\beta}) 
+&= \sum_{i=1}^{N} \mathrm{ln}\ \mathcal{N}(y_i|\bm{w}^T\phi(\bm{x_i}), \beta_i^{-1})\\
+&= \frac{1}{2}\sum_{i=1}^{N}\mathrm{ln}\ \beta_i - \frac{N}{2} \mathrm{ln}(2\pi) - \frac{1}{2}\sum_{i=1}^{N}\beta_i[\bm{w}^T\phi(\bm{x}_i) - \bm{y}_i]^2
+\label{multivariate Gaussian logarithm}
+\end{aligned}
+\end{equation}
+So $E_weighted(\bm{w})$ share the similar form with the last item of the equation \ref{multivariate Gaussian logarithm}, so we can just interpret $t_i$ as the precision of each Gaussian random variable $\beta_i$.\\
+(2)\ In terms of the data points for which there are exact copies in the dataset, the corresponding weights will be enlarged, since they may play a more mportant role in the estimation.
+
+
+\section*{Problem 2}
+Augment the design matrix $\bm{\Phi} \in \mathrm{R}^{N\times M}$ with $M$ additional rows $\sqrt{\lambda}\bm{I}_{M\times M}$, then we get:
+\begin{equation}
+\bm{\Phi'} = 
+\begin{pmatrix}
+\bm{\Phi}_{N \times M} \\
+\sqrt{\lambda}\bm{I}_{M\times M}
+\end{pmatrix} \in \mathrm{R}^{(N+M)\times M}
+\end{equation}
+
+Augment $\bm{y}$ with $M$ zeros, then we get:
+\begin{equation}
+\bm{y}'= 
+\begin{pmatrix}
+\bm{y}_{N\times 1} \\ 0_{M\times 1}
+\end{pmatrix} \in \mathrm{R}^{(N+M)\times 1}
+\end{equation}
+Note that $\bm{y'}^T\bm{y'} = \bm{y}^T\bm{y}$.\\
+Then the ordinary least squares regression are:
+\begin{equation}
+\begin{aligned}
+E_{LS}(\bm{w})
+&= \frac{1}{2}(\bm{\Phi' w} -\bm{y}')^T(\bm{\Phi' w} -\bm{y}')\\
+&= \frac{1}{2}(\bm{w}^T\bm{\Phi}'^T\bm{\Phi' w} - 2\bm{w}^T\bm{\Phi}'^T\bm{y}' + \bm{y}'^T\bm{y}')\\
+&= \frac{1}{2}(\bm{w}^T(\bm{\Phi}^T_{M\times N} \ \sqrt{\lambda}\bm{I}_{M\times M})
+\begin{pmatrix}
+\bm{\Phi}_{N \times M} \\
+\sqrt{\lambda}\bm{I}_{M\times M}
+\end{pmatrix}
+\bm{w} - 2\bm{w}^T(\bm{\Phi}^T_{M\times N} \ \sqrt{\lambda}\bm{I}_{M\times M})
+\begin{pmatrix}
+\bm{y}_{N\times 1} \\ 0_{M\times 1}
+\end{pmatrix}
++\bm{y}'^T\bm{y}')\\
+&= \frac{1}{2}(\bm{w}^T\bm{\Phi}^T\bm{\Phi}\bm{w}+\lambda\bm{w}^T\bm{w}-2\bm{w}^T\bm{y}+\bm{y}^T\bm{y})\\
+&= \frac{1}{2}(\bm{\Phi}\bm{w}-\bm{y})^T(\bm{\Phi}\bm{w}-\bm{y})+\frac{\lambda}{2}\bm{w}^T\bm{w}
+\end{aligned}
+\end{equation}
+which is exactly the form of ridge regression.
+
+\section*{Problem 3}
+To find the minimun of the function $E_{ridge}(\bm{w})$, compute the gradient $\nabla_{\bm{w}}E_{ridge}(\bm{w})$:
+\begin{equation}
+\begin{aligned}
+\nabla_{\bm{w}}E_{ridge}(\bm{w})
+&= \nabla_{\bm{w}}( \frac{1}{2}\sum_{i=1}^{N}(\bm{w}^T\bm{\phi}(\bm{x}_i) - \bm{y_i})^2+\frac{\lambda}{2}\bm{w}^T\bm{w})\\
+&= \nabla_{\bm{w}}(\frac{1}{2}(\bm{\Phi}\bm{w}-\bm{y})^T(\bm{\Phi}\bm{w}-\bm{y})+\frac{\lambda}{2}\bm{w}^T\bm{w})\\
+&= \bm{\Phi}^T\bm{\Phi w}-\bm{\Phi}^T\bm{y} + \lambda \bm{w}
+\end{aligned}
+\end{equation}
+Now set the gradient to zero and solver for $\bm{w}$ to obtain the minimizer
+\begin{equation}
+\bm{\Phi}^T\bm{\Phi w}-\bm{\Phi}^T\bm{y} + \lambda \bm{w} = (\bm{\Phi}^T\bm{\Phi}+\lambda \bm{I}) \bm{w} - \bm{\Phi}^T\bm{y} = 0
+\end{equation}
+This leads to the closed form solution for ridge regression error function:
+\begin{equation}
+\bm{w}^* = (\bm{\Phi}^T\bm{\Phi}+\lambda \bm{I})^{-1}\bm{\Phi}^T\bm{y}
+\end{equation}
+So when the number of training samples $N$ is smaller than the number of basis functions $M$, then the coefficients may be finely tuned to the data by developing large positive and negative values so that the corresponding polynomial function matches each of the data points exactly, that is, overfitting problem due to the lack of data.\\
+The rgularization involves adding a penalty term to the error function in order to discourage the coefficients from reaching large value, and the coefficient $\lambda$ governs the relative importance of the regularization term compared with the sum-of-squares error term.
+
+
+\section*{Problem 4}
+When we want to predict $M$ target variables, then use the same set of basis functions to model all of the components of the target vector so that
+\begin{equation}
+\bm{f}(\bm{x}, \bm{w}) = \bm{W}^T\phi(\bm{x})
+\end{equation}
+where $\bm{y}$ is a $M$-dimensional column verctor, $\bm{W}$ is an $N\times M$ matrix of parameters, and $\phi(\bm{x})$ is an $N$-dimensional column vector with elements $\phi_j(\bm{x})$, with $\phi_0(\bm{x}) = 1$. Suppose we take the conditional distribution of the target vector to be an isotropic Gaussian of the form
+\begin{equation}
+p(\bm{y}|\bm{x}, \bm{W}, \beta) = \mathcal{N}(\bm{y}|\bm{W}^T\phi(\bm{x}), \beta^{-1}\bm{I})
+\end{equation}
+If we have a set of observations $\bm{y}_1, \dots, \bm{y}_N$, we can combine these into a matrix $\bm{Y}$ of size $N\times M$ such that the $n_{th}$ row is given by $\bm{y}_n^T$. Similarly, we can combine the input vectors $\bm{x}_1, \dots, \bm{x}_N$ into a matrix $\bm{X}$. The log likelihood function is then given by
+\begin{equation}
+\begin{aligned}
+\mathrm{ln}\ p(\bm{Y}|\bm{X}, \bm{W}, \beta) 
+&= \sum_{n=1}^{N}\mathrm{ln}\ \mathcal{N}(\bm{y}_n|\bm{W}^T\phi(\bm{x}_n), \beta^{-1}\bm{I})\\
+&= \frac{NM}{2}\mathrm{ln}{\frac{\beta}{2\pi}} - \frac{\beta}{2}\sum_{n=1}^{N}||\bm{y}_n-\bm{W}^T\phi(\bm{x}_n)||^2\\
+\label{the log likelihood function}
+\end{aligned}
+\end{equation}
+As before, we can maximize this function with respect to $\bm{W}$, giving
+\begin{equation}
+\bm{W}_{MLE} = (\bm{\Phi}^T\bm{\Phi})^{-1}\bm{\Phi}^T\bm{Y}
+\end{equation}
+Examine this result for each target variable $y_k$, we have
+\begin{equation}
+\bm{w}_m = (\bm{\Phi}^T\bm{\Phi})^{-1}\bm{\Phi}^T\bm{y}_m = \bm{\Phi}^\dagger\bm{y}_m
+\end{equation}
+where $y_m$ is an $N$-dimensional column vector with components $y_{nm}$ for $n=1, \dots, N$. Thus the solution to the regression problem decouples between the different target variables, and we need only compute a single pseudo-inverse matrix $\Phi^\dagger$, which is shared by all of the vector $\bm{w}_m$.\\
+We can also maximize the log likelihood function \ref{the log likelihood function} with respect to the noise precision parameter $\beta$, giving
+\begin{equation}
+\frac{1}{\beta_{MLE}} = \frac{1}{NM}\sum_{n=1}^{N}||\bm{y}_n - \bm{W}^T\phi(\bm{x}_n)||^2
+\end{equation}
+ 
+\section*{Problem 5}
+a)\ For a simple linear regression $\bm{y}=\bm{Xw}$, when $\bm{X}_{new}$ is scalled by $a$ while $\bm{y}$ remains the same, here we define a matrix $\bm{A} = \mathrm{diag}(a,a,\dots,a) \in \mathbb{R}^D$, then
+\begin{equation}
+\bm{y} = \bm{Xw} = \bm{X}_{new} \bm{w}_{new} = \bm{XA}\bm{w}_{new}
+\end{equation}
+so we have
+\begin{equation}
+\bm{w}_{new} = \bm{A}^{-1}\bm{X}^{-1}\bm{y} = \bm{A}^{-1}\bm{w}
+\end{equation}
+Respectively, $\bm{w}_i^{new} = \frac{1}{a} \bm{w}_i$\\
+b)\ For $L_2$-regularized linear regression model with the optimal weight vector $\bm{w}_{new}^* \in \mathbb{R}^D$ as
+\begin{equation}
+\begin{aligned}
+\bm{w}_{new}^* 
+&= \mathrm{arg\ min} \frac{1}{2}\sum_{i=1}^{N}(a\cdot \bm{w}^T\bm{x}_i-y_i)^2 + \frac{\lambda}{2}\bm{w}^T\bm{w}\\
+&= \mathrm{arg\ min} \frac{1}{2}(\bm{w}^T\bm{X}^T\bm{A}^T\bm{AX w} - 2\bm{w}^T\bm{X}^T\bm{A}^T\bm{y} +\bm{y}^T\bm{y}) + \frac{\lambda}{2}\bm{w}^T\bm{w}\\
+\end{aligned}
+\end{equation}
+Now set the gradient to zero and solve for $\bm{w}$ to obtain the minimizer
+\begin{equation}
+\bm{X}^T\bm{A}^T\bm{A}\bm{Xw} -\bm{X}^T\bm{A}^T\bm{y} + \lambda_{new}\bm{w}  \defeq 0
+\end{equation}
+So we get the weight vector
+\begin{equation}
+\begin{aligned}
+\bm{w}_{new} 
+&= (\bm{X}^T\bm{A}^T\bm{A}\bm{X} + \lambda_{new}\bm{I})^{-1}\bm{X}^T\bm{A}^T\bm{y}\\
+&= \bm{A}^{-1}\bm{w}\\
+&= \bm{A}^{-1}(\bm{X}^T\bm{X}+\lambda\bm{I})^{-1}\bm{X}^T\bm{y}
+\end{aligned}
+\end{equation}
+So we can get $\lambda_{new}\bm{I} = \lambda\bm{A}^T\bm{A}\bm{I}$, namely, $\lambda_{new} = a^2\lambda$.
+\section*{Problem 6}
+See the pages below.
+\end{document}

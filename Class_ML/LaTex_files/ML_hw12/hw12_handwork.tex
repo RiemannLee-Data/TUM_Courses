@@ -1,0 +1,122 @@
+\documentclass{article}
+
+\usepackage[final]{style}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{verbatim}
+\usepackage{graphicx}       % for figures
+
+\usepackage{caption}
+\usepackage{graphicx, subfig}
+
+\usepackage{amsmath,bm}
+
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+
+% Self-defined macros
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\proba}[1]{\mathsf{P}(#1)}
+\newcommand{\expect}[1]{\mathsf{E}[#1]}
+\newcommand{\var}[1]{\mathsf{Var}(#1)}
+\newcommand\defeq{\stackrel{\text{!}}{=}}
+
+\title{Exercise 12 of Machine Learning [IN 2064]}
+
+\author{
+  Name: Yiman Li \\
+  \textbf{Matr-Nr: 03724352} \\
+  cooperate with Kejia Chen(03729686)\\
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+To be seen in the end.
+
+\section*{Problem 2}
+According to \cite{GoodBengCour16}, let the linear encoder be
+\begin{equation}
+ \bm{h} = f(\bm{x}) = \bm{W}^T(\bm{x}-\bm{\mu})
+\end{equation}
+The encoder computers a low-dimensional representation of $\bm{h}$. With the autoencoder view, we have a decoder computing the reconstruction:
+\begin{equation}
+	\hat{\bm{x}} = g(\bm{h}) = \bm{b} + \bm{Vh}
+\end{equation}
+The choice of linear encoder and decoder that minimize reconstruction error $\mathbb{E}[||\bm{x}-\hat{\bm{x}}||^2]$ correspond to $\bm{V} = \bm{W}$, $\bm{\mu} = \bm{b} = \mathbb{E}[\bm{x}]$ and the columns of $\bm{W}$ form an orthogonal basis which spans the same subspace as the principle eigenvectors of the covariance matrix
+\begin{equation}
+	\bm{C} = \mathbb{E}[(\bm{x}-\bm{\mu})(\bm{x}-\bm{\mu})^T]
+\end{equation}
+what we've already known is that the eigenvalue $\lambda_i$ of $\bm{C}$ corresponds to the variance of $\bm{x}$ in the direction of eigenvector $\bm{v}^{(i)}$. If $\bm{x} \in \mathbb{R}^D$ and $\bm{h} \in \mathbb{R}^d$ with $K<D$, then the optimal reconstruction error(choosing $\bm{\mu}, \bm{b}, \bm{W}$ and $\bm{W}$ as above) is 
+\begin{equation}
+	\mathrm{min} \mathbb{E}[||\bm{x}-\hat{\bm{x}}||^2] = \sum_{i=K+1}^{D} \lambda_i
+\end{equation}
+\begin{itemize}
+	\item So only on the condition that the covariance has rank $K$, the eigenvalues $\lambda_{K+1}$ to $\lambda_D$ are 0 and reconstruction error is 0.
+	\item Thus, it is usually impossible to get zero reconstruction error in the setting that $K<D$.
+\end{itemize}
+
+
+\section*{Problem 3}
+For expected value, using iterated expectations, we have:
+\begin{eqnarray}
+	\begin{aligned}
+		\mathbb{E}[\bm{x}] 
+		&= \mathbb{E}_{p(z)}[\mathbb{E}_{p(\bm{x}|z)}[\bm{x}|z]]\\
+		&= \sum_{k=1}^{K} \bm{\pi}_k \mathbb{E}_{p(\bm{x}|z)}[\bm{x}|z]\\
+		&= \sum_{k=1}^{K} \bm{\pi}_k \bm{\mu}_k
+	\end{aligned}
+\end{eqnarray}
+
+For covariance, since
+\begin{eqnarray}
+	\begin{aligned}
+		\mathbb{E}[\bm{xx}^T] 
+		&= \mathbb{E}_{p(z)}[\mathbb{E}_{p(\bm{xx}^T|z)}[\bm{x}|z]]\\
+		&= \sum_{k=1}^{K} \bm{\pi}_k \mathbb{E}_{p(\bm{x}|z)}[\bm{xx}^T|z]\\
+		&= \sum_{k=1}^{K} \bm{\pi}_k(\sigma_k + \bm{\mu}_k\bm{\mu}_k^T)
+	\end{aligned}
+\end{eqnarray}
+So we have
+\begin{eqnarray}
+	\begin{aligned}
+		Cov[\bm{x}]
+		&= \mathbb{E}[\bm{xx}^T] - \mathbb{E}[\bm{x}]\mathbb{E}[\bm{x}]^T\\
+		&= \sum_{k=1}^{K} \bm{\pi}_k(\sigma_k + \bm{\mu}_k\bm{\mu}_k^T) - \sum_{i=1}^{K} \sum_{j=1}^{K} \bm{\pi}_i \bm{\pi}_j \bm{\mu}_i \bm{\mu}_j
+	\end{aligned}
+\end{eqnarray}
+
+
+\section*{Problem 4}
+a) The generative process is showed as below:
+\begin{itemize}
+	\item Draw $k$ from the categorical distribution on ${1, \cdots, K_x}$ with probability from $\bm{\pi}^x$
+	\item Draw $\tilde{\bm{x}}$ from the normal distribution $\mathcal{N}(\bm{\mu}_k^x, \bm{\Sigma}_k^x)$
+	\item Draw $l$ from the categorical distribution on ${1, \cdots, K_y}$ with probability from $\bm{\pi}^y$
+	\item Draw $\tilde{\bm{y}}$ from the normal distribution $\mathcal{N}(\bm{\mu}_l^y, \bm{\Sigma}_l^y)$
+	\item Return $\tilde{\bm{z}} := \tilde{\bm{x}} + \tilde{\bm{y}}$
+\end{itemize}
+
+b) The sum of a two Gaussian distribution is still a Gasussian distribution
+
+c) The distribution of $\bm{z}$ is showed below:
+\begin{equation}
+	p(\bm{z}|\bm{\theta}^x, \bm{\theta}^y) = \sum_{k=l}^{K_x} \sum_{l=1}^{K_y} \pi_k^x \pi_l^y \mathcal{N}(\bm{z}|\bm{\mu}_k^x + \bm{\mu}_l^y, \bm{\Sigma}_k^x + \bm{\Sigma}_l^y)
+\end{equation}
+\section*{Problem 5}
+To be seen in the end.
+
+% References
+\small
+\bibliographystyle{plain}
+\bibliography{bibliography12}
+\end{document}
+

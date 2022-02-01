@@ -1,0 +1,157 @@
+\documentclass{article}
+
+\usepackage[final]{style}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{verbatim}
+\usepackage{graphicx}       % for figures
+
+\usepackage{caption}
+\usepackage{graphicx, subfig}
+
+\usepackage{amsmath,bm}
+
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+
+% Self-defined macros
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\proba}[1]{\mathsf{P}(#1)}
+\newcommand{\expect}[1]{\mathsf{E}[#1]}
+\newcommand{\var}[1]{\mathsf{Var}(#1)}
+\newcommand\defeq{\stackrel{\text{!}}{=}}
+
+\title{Exercise 08 of Machine Learning [IN 2064]}
+
+\author{
+  Name: Yiman Li \\
+  \textbf{Matr-Nr: 03724352} \\
+  cooperate with Kejia Chen(03729686)\\
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+According to \cite{bishop2007}, both perceptron algorithm and support machine vector are solutions that separate the classes exactly.\\
+However, the solution that perceptron algorithm finds will be dependent on the arbitrary initial values chosen for $\bm{w}$ and $b$ as well as on the order in which the data points are presented. If there are multiple solutions all of which classify the training data set exactly, the we should try to find the one that will give the smallest generalization error.\\
+On the other hand, the support vector machine approaches this problem through the concept of the margin, which is defined to be the smallest distance between the decision boundary and any of the samples.
+
+
+\section*{Problem 2}
+a) Recall that $\bm{X} \in \mathcal{R}^{N \times D}$, $\bm{y} \in \mathcal{R}^N$, so we have
+\begin{equation}
+	\begin{aligned}
+		g(\bm{\alpha})
+		&= \sum_{i=1}^{N} \alpha_i - \frac{1}{2}\sum_{i=1}^{N} \sum_{i=1}^{N} y_i y_j \alpha_i \alpha_j \bm{x_i}^T\bm{x_j} \\
+		&= \frac{1}{2} \bm{\alpha}^T\bm{Q} \bm{\alpha} +\bm{\alpha}^T\bm{1}_N\\
+		&= \frac{1}{2} \bm{\alpha}^T(-\bm{X}\bm{X}^T \odot \bm{y}\bm{y}^T) \bm{\alpha} +\bm{\alpha}^T\bm{1}_N
+	\end{aligned}
+\end{equation}
+so we get
+\begin{equation}
+	\bm{Q} = -\ \bm{X}\bm{X}^T \odot \bm{y}\bm{y}^T
+\end{equation}
+b) Firstly we have
+\begin{equation}
+	\bm{Q}  = - \left[
+	\begin{matrix}
+	\bm{x}_1^T\bm{x}_1y_1y_1 & \bm{x}_1^T\bm{x}_2y_1y_2 & \cdots & \bm{x}_1^T\bm{x}_Ny_1y_N \\
+	\bm{x}_2^T\bm{x}_1y_2y_1 & \bm{x}_2^T\bm{x}_2y_2y_2 & \cdots & \bm{x}_2^T\bm{x}_Ny_2y_N \\
+	\vdots & \vdots & \ddots & \vdots \\
+	\bm{x}_N^T\bm{x}_1y_Ny_1 & \bm{x}_N^T\bm{x}_2y_Ny_2 & \cdots & \bm{x}_N^T\bm{x}_Ny_Ny_N	
+	\end{matrix}
+	\right]
+\end{equation}
+note that
+\begin{equation}
+	\bm{Q}_{(i,j)} = - (\bm{x}_i^T\bm{x}_jy_iy_j) = - (\bm{x}_j^T\bm{x}_iy_jy_i) = \bm{Q}_{(j,i)}
+\end{equation}
+which means that $\bm{Q}$ is symmetric. 
+Since $\bm{X}^T\bm{X}$ and $\bm{y}\bm{y}^T$ are all $\bm{Gram \ Matrix}$, so $-\bm{Q}$ are always negative (semi-)definite matrix. Considering the linear constraints on $\bm{\alpha}$, so the function $g(\bm{\alpha})$ is concave, and the local maximizer of $g$ is just its global maximizer. So we can search for a local maximizer of $g$ to find its maximum.
+
+
+\section*{Problem 3}
+Intuitively, the misclassification rate of LOOCV can be understood as below:
+\begin{equation}
+	\epsilon = \frac{Number\ of\ misclassification\ samples}{Number\ of\ all\ samples}
+\end{equation}
+Since we use support vector machine here with the number of training samples being $s$, so the number of misclaasification samples must be smaller than $s$, so we have
+\begin{equation}
+	\epsilon \leq \frac{s}{N}
+\end{equation}
+
+
+\section*{Problem 4}
+To be see in the end.
+
+
+\section*{Problem 5}
+Firstly, we have
+\begin{equation}
+	\begin{aligned}
+		k(\bm{x}_m^T, \bm{x}_n^T)
+		&= \sum_{i=1}^{N} a_i (\bm{x}_m^T\bm{x}_n)^i + a_0\\
+		&= \sum_{i=1}^{N} a_i (\bm{x}_n^T\bm{x}_m)^i + a_0\\
+		&=k(\bm{x}_n^T, \bm{x}_m^T)
+	\end{aligned}
+\end{equation}
+Which means the matrix is symmetric. Then the kernel matrix
+\begin{equation}
+	\begin{aligned}
+		\bm{K} 
+		&= \left[
+		\begin{matrix}
+		\sum_{i=1}^{N} a_i (\bm{x}_1^T\bm{x}_1)^i + a_0 & \sum_{i=1}^{N} a_i (\bm{x}_1^T\bm{x}_2)^i + a_0 & \cdots & \sum_{i=1}^{N} a_i (\bm{x}_1^T\bm{x}_N)^i + a_0 \\
+		\\
+		\sum_{i=1}^{N} a_i (\bm{x}_2^T\bm{x}_1)^i + a_0 & \sum_{i=1}^{N} a_i (\bm{x}_2^T\bm{x}_2)^i + a_0 & \cdots & \sum_{i=1}^{N} a_i (\bm{x}_2^T\bm{x}_N)^i + a_0 \\
+		\\
+		\vdots & \vdots & \ddots & \vdots \\
+		\\
+		\sum_{i=1}^{N} a_i (\bm{x}_N^T\bm{x}_1)^i + a_0 & \sum_{i=1}^{N} a_i (\bm{x}_N^T\bm{x}_2)^i + a_0 & \cdots & \sum_{i=1}^{N} a_i (\bm{x}_N^T\bm{x}_N)^i + a_0
+		\end{matrix}
+		\right]\\
+		\\
+		&= a_1\bm{X}\bm{X}^T + a_2(\bm{X}\bm{X}^T)^2 + \cdots + a_N(\bm{X}\bm{X}^T)^N + a_0\\
+	\end{aligned}
+\end{equation}
+which is the positive sum of a series of $\bm{Gram \ Matrix}$ plus a constant $a_0$. Since $\bm{Gram \ Matrix}$ is alway positive semi-definite, so we have that the kernel matrix is also positive semi-definite for any input data $\bm{X}$.\\
+Since the function here gives rise to a symmetric and positive semi-definite kernel matrix $\bm{K}$, so we can say that the function $k$ here is a valid kernel.
+\section*{Problem 6}
+For $x_1$, $x_2 \in (0,1)$, consider a kernel function in an infinite-dimensional feature space, we have
+\begin{equation}
+	\lim\limits_{n = \infty} x_1^n = 0 \ ,\ \ \lim\limits_{n = \infty}x_2^n =0 \ ,\ \ \lim\limits_{n = \infty}(x_1x_2)^n=0
+\end{equation}
+so use the feature transformation function
+\begin{equation}
+	\begin{aligned}
+		\bm{\phi}(x) 
+		&= 1 + x^1 + x^2 + \cdots + x^n\\
+		&= \frac{1-x^n}{1-x}\\
+		& \approx \frac{1}{1-x}
+	\end{aligned}	
+\end{equation}
+then we have 
+\begin{equation}
+	\begin{aligned}
+		k(x_1, x_2)
+		&= \phi(x_1)^T \phi(x_2)\\
+		&= 1 + x_1x_2 +(x_1x_2)^2 + \cdots + (x_1x_2)^n\\
+		&= \frac{1-(x_1x_2)^n}{1-x_1x_2}\\
+		& \approx \frac{1}{1-x_1x_2}
+	\end{aligned}
+\end{equation}
+
+
+% References
+\small
+\bibliographystyle{plain}
+\bibliography{bibliography8}
+\end{document}

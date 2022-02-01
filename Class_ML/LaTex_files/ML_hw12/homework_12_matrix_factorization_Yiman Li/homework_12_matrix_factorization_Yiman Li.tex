@@ -1,0 +1,1058 @@
+
+    
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    \usepackage[breakable]{tcolorbox}
+    \tcbset{nobeforeafter} % prevents tcolorboxes being placing in paragraphs
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{homework\_12\_matrix\_factorization\_Yiman Li}
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb. 
+    \makeatletter
+        \newbox\Wrappedcontinuationbox 
+        \newbox\Wrappedvisiblespacebox 
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}} 
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}} 
+        \newcommand*\Wrappedcontinuationindent {3ex } 
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox} 
+        % Take advantage of the already applied Pygments mark-up to insert 
+        % potential linebreaks for TeX processing. 
+        %        {, <, #, %, $, ' and ": go to next line. 
+        %        _, }, ^, &, >, - and ~: stay at end of broken line. 
+        % Use of \textquotesingle for straight quote. 
+        \newcommand*\Wrappedbreaksatspecials {% 
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}% 
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}% 
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}% 
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}% 
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}% 
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}% 
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}% 
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}% 
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}% 
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}% 
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}% 
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}% 
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}% 
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}% 
+        } 
+        % Some characters . , ; ? ! / are not pygmentized. 
+        % This macro makes them "active" and they will insert potential linebreaks 
+        \newcommand*\Wrappedbreaksatpunct {% 
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}% 
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}% 
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}% 
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}% 
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}% 
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}% 
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}% 
+            \catcode`\.\active
+            \catcode`\,\active 
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active 
+            \lccode`\~`\~ 	
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+        
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active 	
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+    
+    % prompt
+    \newcommand{\prompt}[4]{
+        \llap{{\color{#2}[#3]: #4}}\vspace{-1.25em}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{exporting-the-results-to-pdf}{%
+\subsection{Exporting the results to
+PDF}\label{exporting-the-results-to-pdf}}
+
+Once you complete the assignments, export the entire notebook as PDF and
+attach it to your homework solutions. The best way of doing that is 1.
+Run all the cells of the notebook. 2. Export/download the notebook as
+PDF (File -\textgreater{} Download as -\textgreater{} PDF via LaTeX
+(.pdf)). 3. Concatenate your solutions for other tasks with the output
+of Step 2. On linux, you can use \texttt{pdfunite}, there are similar
+tools for other platforms, too. You can only upload a single PDF file to
+Moodle.
+
+Make sure you are using \texttt{nbconvert} version 5.5 or later by
+running \texttt{jupyter\ nbconvert\ -\/-version}. Older versions clip
+lines that exceed page width, which makes your code harder to grade.
+
+    \hypertarget{matrix-factorization}{%
+\section{Matrix Factorization}\label{matrix-factorization}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{time}
+\PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{sparse} \PY{k}{as} \PY{n+nn}{sp}
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{sparse}\PY{n+nn}{.}\PY{n+nn}{linalg} \PY{k}{import} \PY{n}{svds}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{Ridge}
+
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{restaurant-recommendation}{%
+\subsection{Restaurant recommendation}\label{restaurant-recommendation}}
+
+The goal of this task is to recommend restaurants to users based on the
+rating data in the Yelp dataset. For this, we try to predict the rating
+a user will give to a restaurant they have not yet rated based on a
+latent factor model.
+
+Specifically, the objective function (loss) we wanted to optimize is: \[
+\mathcal{L} = \min_{P, Q} \sum_{(i, x) \in W} (M_{ix} - \mathbf{q}_i^T\mathbf{p}_x)^2 + \lambda\sum_x{\left\lVert \mathbf{p}_x  \right\rVert}^2 + \lambda\sum_i {\left\lVert\mathbf{q}_i  \right\rVert}^2
+\]
+
+where \(W\) is the set of \((i, x)\) pairs for which the rating
+\(M_{ix}\) given by user \(i\) to restaurant \(x\) is known. Here we
+have also introduced two regularization terms to help us with
+overfitting where \(\lambda\) is hyper-parameter that control the
+strength of the regularization.
+
+\textbf{Hint 1}: Using the closed form solution for regression might
+lead to singular values. To avoid this issue perform the regression step
+with an existing package such as scikit-learn. It is advisable to use
+ridge regression to account for regularization.
+
+\textbf{Hint 2}: If you are using the scikit-learn package remember to
+set \texttt{fit\_intercept\ =\ False} to only learn the coefficients of
+the linear regression.
+
+    \hypertarget{load-and-preprocess-the-data-nothing-to-do-here}{%
+\subsubsection{Load and Preprocess the Data (nothing to do
+here)}\label{load-and-preprocess-the-data-nothing-to-do-here}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{21}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{ratings} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{exercise\PYZus{}12\PYZus{}matrix\PYZus{}factorization\PYZus{}ratings.npy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{22}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} We have triplets of (user, restaurant, rating).}
+\PY{n}{ratings}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, boxrule=.5pt, size=fbox, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{22}{\hspace{3.5pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+array([[101968,   1880,      1],
+       [101968,    284,      5],
+       [101968,   1378,      2],
+       {\ldots},
+       [ 72452,   2100,      4],
+       [ 72452,   2050,      5],
+       [ 74861,   3979,      5]], dtype=int64)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    Now we transform the data into a matrix of dimension {[}N, D{]}, where N
+is the number of users and D is the number of restaurants in the
+dataset. We store the data as a sparse matrix to avoid out-of-memory
+issues.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{23}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{n\PYZus{}users} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{ratings}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{n\PYZus{}restaurants} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{ratings}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{M} \PY{o}{=} \PY{n}{sp}\PY{o}{.}\PY{n}{coo\PYZus{}matrix}\PY{p}{(}\PY{p}{(}\PY{n}{ratings}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{n}{ratings}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{ratings}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{(}\PY{n}{n\PYZus{}users}\PY{p}{,} \PY{n}{n\PYZus{}restaurants}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{tocsr}\PY{p}{(}\PY{p}{)}
+\PY{n}{M}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, boxrule=.5pt, size=fbox, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{23}{\hspace{3.5pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+<337867x5899 sparse matrix of type '<class 'numpy.int64'>'
+        with 929606 stored elements in Compressed Sparse Row format>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    To avoid the cold start problem, in the preprocessing step, we
+recursively remove all users and restaurants with 10 or less ratings.
+
+Then, we randomly select 200 data points for the validation and test
+sets, respectively.
+
+After this, we subtract the mean rating for each users to account for
+this global effect.
+
+\textbf{Note}: Some entries might become zero in this process -- but
+these entries are different than the `unknown' zeros in the matrix. We
+store the indices for which we the rating data available in a separate
+variable.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{24}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{cold\PYZus{}start\PYZus{}preprocessing}\PY{p}{(}\PY{n}{matrix}\PY{p}{,} \PY{n}{min\PYZus{}entries}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Recursively removes rows and columns from the input matrix which have less than min\PYZus{}entries nonzero entries.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    Parameters}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    matrix      : sp.spmatrix, shape [N, D]}
+\PY{l+s+sd}{                  The input matrix to be preprocessed.}
+\PY{l+s+sd}{    min\PYZus{}entries : int}
+\PY{l+s+sd}{                  Minimum number of nonzero elements per row and column.}
+
+\PY{l+s+sd}{    Returns}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    matrix      : sp.spmatrix, shape [N\PYZsq{}, D\PYZsq{}]}
+\PY{l+s+sd}{                  The pre\PYZhy{}processed matrix, where N\PYZsq{} \PYZlt{}= N and D\PYZsq{} \PYZlt{}= D}
+\PY{l+s+sd}{        }
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Shape before: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{matrix}\PY{o}{.}\PY{n}{shape}\PY{p}{)}\PY{p}{)}
+    
+    \PY{n}{shape} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+    \PY{k}{while} \PY{n}{matrix}\PY{o}{.}\PY{n}{shape} \PY{o}{!=} \PY{n}{shape}\PY{p}{:}
+        \PY{n}{shape} \PY{o}{=} \PY{n}{matrix}\PY{o}{.}\PY{n}{shape}
+        \PY{n}{nnz} \PY{o}{=} \PY{n}{matrix}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0}
+        \PY{n}{row\PYZus{}ixs} \PY{o}{=} \PY{n}{nnz}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{A1} \PY{o}{\PYZgt{}} \PY{n}{min\PYZus{}entries}
+        \PY{n}{matrix} \PY{o}{=} \PY{n}{matrix}\PY{p}{[}\PY{n}{row\PYZus{}ixs}\PY{p}{]}
+        \PY{n}{nnz} \PY{o}{=} \PY{n}{matrix}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0}
+        \PY{n}{col\PYZus{}ixs} \PY{o}{=} \PY{n}{nnz}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{A1} \PY{o}{\PYZgt{}} \PY{n}{min\PYZus{}entries}
+        \PY{n}{matrix} \PY{o}{=} \PY{n}{matrix}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{col\PYZus{}ixs}\PY{p}{]}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Shape after: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{matrix}\PY{o}{.}\PY{n}{shape}\PY{p}{)}\PY{p}{)}
+    \PY{n}{nnz} \PY{o}{=} \PY{n}{matrix}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0}
+    \PY{k}{assert} \PY{p}{(}\PY{n}{nnz}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{A1} \PY{o}{\PYZgt{}} \PY{n}{min\PYZus{}entries}\PY{p}{)}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{p}{)}
+    \PY{k}{assert} \PY{p}{(}\PY{n}{nnz}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{A1} \PY{o}{\PYZgt{}} \PY{n}{min\PYZus{}entries}\PY{p}{)}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{p}{)}
+    \PY{k}{return} \PY{n}{matrix}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{task-1-implement-a-function-that-subtracts-the-mean-user-rating-from-the-sparse-rating-matrix}{%
+\subsubsection{Task 1: Implement a function that subtracts the mean user
+rating from the sparse rating
+matrix}\label{task-1-implement-a-function-that-subtracts-the-mean-user-rating-from-the-sparse-rating-matrix}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{25}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{shift\PYZus{}user\PYZus{}mean}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Subtract the mean rating per user from the non\PYZhy{}zero elements in the input matrix.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    Parameters}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    matrix : sp.spmatrix, shape [N, D]}
+\PY{l+s+sd}{             Input sparse matrix.}
+\PY{l+s+sd}{    Returns}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    matrix : sp.spmatrix, shape [N, D]}
+\PY{l+s+sd}{             The modified input matrix.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    user\PYZus{}means : np.array, shape [N, 1]}
+\PY{l+s+sd}{                 The mean rating per user that can be used to recover the absolute ratings from the mean\PYZhy{}shifted ones.}
+
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    
+    \PY{c+c1}{\PYZsh{} TODO: Compute the modified matrix and user\PYZus{}means}
+    \PY{n}{nnz\PYZus{}mask} \PY{o}{=} \PY{p}{(}\PY{n}{matrix}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0}\PY{p}{)}
+    \PY{n}{user\PYZus{}means} \PY{o}{=} \PY{n}{matrix}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/} \PY{n}{nnz\PYZus{}mask}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+    \PY{n}{subtract\PYZus{}mask} \PY{o}{=} \PY{n}{sp}\PY{o}{.}\PY{n}{csr\PYZus{}matrix}\PY{p}{(}\PY{n}{user\PYZus{}means}\PY{p}{)}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{nnz\PYZus{}mask}\PY{p}{)}
+    \PY{n}{matrix} \PY{o}{=} \PY{n}{matrix}\PY{o}{\PYZhy{}}\PY{n}{subtract\PYZus{}mask}
+    
+    \PY{k}{assert} \PY{n}{np}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{isclose}\PY{p}{(}\PY{n}{matrix}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+    \PY{k}{return} \PY{n}{matrix}\PY{p}{,} \PY{n}{user\PYZus{}means}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{split-the-data-into-a-train-validation-and-test-set-nothing-to-do-here}{%
+\subsubsection{Split the data into a train, validation and test set
+(nothing to do
+here)}\label{split-the-data-into-a-train-validation-and-test-set-nothing-to-do-here}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{26}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{split\PYZus{}data}\PY{p}{(}\PY{n}{matrix}\PY{p}{,} \PY{n}{n\PYZus{}validation}\PY{p}{,} \PY{n}{n\PYZus{}test}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Extract validation and test entries from the input matrix. }
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    Parameters}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    matrix          : sp.spmatrix, shape [N, D]}
+\PY{l+s+sd}{                      The input data matrix.}
+\PY{l+s+sd}{    n\PYZus{}validation    : int}
+\PY{l+s+sd}{                      The number of validation entries to extract.}
+\PY{l+s+sd}{    n\PYZus{}test          : int}
+\PY{l+s+sd}{                      The number of test entries to extract.}
+
+\PY{l+s+sd}{    Returns}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    matrix\PYZus{}split    : sp.spmatrix, shape [N, D]}
+\PY{l+s+sd}{                      A copy of the input matrix in which the validation and test entries have been set to zero.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    val\PYZus{}idx         : tuple, shape [2, n\PYZus{}validation]}
+\PY{l+s+sd}{                      The indices of the validation entries.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    test\PYZus{}idx        : tuple, shape [2, n\PYZus{}test]}
+\PY{l+s+sd}{                      The indices of the test entries.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    val\PYZus{}values      : np.array, shape [n\PYZus{}validation, ]}
+\PY{l+s+sd}{                      The values of the input matrix at the validation indices.}
+\PY{l+s+sd}{                      }
+\PY{l+s+sd}{    test\PYZus{}values     : np.array, shape [n\PYZus{}test, ]}
+\PY{l+s+sd}{                      The values of the input matrix at the test indices.}
+
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    
+    \PY{n}{matrix\PYZus{}cp} \PY{o}{=} \PY{n}{matrix}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+    \PY{n}{non\PYZus{}zero\PYZus{}idx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argwhere}\PY{p}{(}\PY{n}{matrix\PYZus{}cp}\PY{p}{)}
+    \PY{n}{ixs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{permutation}\PY{p}{(}\PY{n}{non\PYZus{}zero\PYZus{}idx}\PY{p}{)}
+    \PY{n}{val\PYZus{}idx} \PY{o}{=} \PY{n+nb}{tuple}\PY{p}{(}\PY{n}{ixs}\PY{p}{[}\PY{p}{:}\PY{n}{n\PYZus{}validation}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+    \PY{n}{test\PYZus{}idx} \PY{o}{=} \PY{n+nb}{tuple}\PY{p}{(}\PY{n}{ixs}\PY{p}{[}\PY{n}{n\PYZus{}validation}\PY{p}{:}\PY{n}{n\PYZus{}validation} \PY{o}{+} \PY{n}{n\PYZus{}test}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+    
+    \PY{n}{val\PYZus{}values} \PY{o}{=} \PY{n}{matrix\PYZus{}cp}\PY{p}{[}\PY{n}{val\PYZus{}idx}\PY{p}{]}\PY{o}{.}\PY{n}{A1}
+    \PY{n}{test\PYZus{}values} \PY{o}{=} \PY{n}{matrix\PYZus{}cp}\PY{p}{[}\PY{n}{test\PYZus{}idx}\PY{p}{]}\PY{o}{.}\PY{n}{A1}
+    
+    \PY{n}{matrix\PYZus{}cp}\PY{p}{[}\PY{n}{val\PYZus{}idx}\PY{p}{]} \PY{o}{=} \PY{n}{matrix\PYZus{}cp}\PY{p}{[}\PY{n}{test\PYZus{}idx}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+    \PY{n}{matrix\PYZus{}cp}\PY{o}{.}\PY{n}{eliminate\PYZus{}zeros}\PY{p}{(}\PY{p}{)}
+
+    \PY{k}{return} \PY{n}{matrix\PYZus{}cp}\PY{p}{,} \PY{n}{val\PYZus{}idx}\PY{p}{,} \PY{n}{test\PYZus{}idx}\PY{p}{,} \PY{n}{val\PYZus{}values}\PY{p}{,} \PY{n}{test\PYZus{}values}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{27}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{M} \PY{o}{=} \PY{n}{cold\PYZus{}start\PYZus{}preprocessing}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Shape before: (337867, 5899)
+Shape after: (3529, 2072)
+\end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{28}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{n\PYZus{}validation} \PY{o}{=} \PY{l+m+mi}{200}
+\PY{n}{n\PYZus{}test} \PY{o}{=} \PY{l+m+mi}{200}
+\PY{c+c1}{\PYZsh{} Split data}
+\PY{n}{M\PYZus{}train}\PY{p}{,} \PY{n}{val\PYZus{}idx}\PY{p}{,} \PY{n}{test\PYZus{}idx}\PY{p}{,} \PY{n}{val\PYZus{}values}\PY{p}{,} \PY{n}{test\PYZus{}values} \PY{o}{=} \PY{n}{split\PYZus{}data}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{n\PYZus{}validation}\PY{p}{,} \PY{n}{n\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{29}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Remove user means.}
+\PY{n}{nonzero\PYZus{}indices} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argwhere}\PY{p}{(}\PY{n}{M\PYZus{}train}\PY{p}{)}
+\PY{n}{M\PYZus{}shifted}\PY{p}{,} \PY{n}{user\PYZus{}means} \PY{o}{=} \PY{n}{shift\PYZus{}user\PYZus{}mean}\PY{p}{(}\PY{n}{M\PYZus{}train}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Apply the same shift to the validation and test data.}
+\PY{n}{val\PYZus{}values\PYZus{}shifted} \PY{o}{=} \PY{n}{val\PYZus{}values} \PY{o}{\PYZhy{}} \PY{n}{user\PYZus{}means}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{val\PYZus{}idx}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{A1}
+\PY{n}{test\PYZus{}values\PYZus{}shifted} \PY{o}{=} \PY{n}{test\PYZus{}values} \PY{o}{\PYZhy{}} \PY{n}{user\PYZus{}means}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{test\PYZus{}idx}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{A1}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{compute-the-loss-function-nothing-to-do-here}{%
+\subsubsection{Compute the loss function (nothing to do
+here)}\label{compute-the-loss-function-nothing-to-do-here}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{30}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{loss}\PY{p}{(}\PY{n}{values}\PY{p}{,} \PY{n}{ixs}\PY{p}{,} \PY{n}{Q}\PY{p}{,} \PY{n}{P}\PY{p}{,} \PY{n}{reg\PYZus{}lambda}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Compute the loss of the latent factor model (at indices ixs).}
+\PY{l+s+sd}{    Parameters}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    values : np.array, shape [n\PYZus{}ixs,]}
+\PY{l+s+sd}{        The array with the ground\PYZhy{}truth values.}
+\PY{l+s+sd}{    ixs : tuple, shape [2, n\PYZus{}ixs]}
+\PY{l+s+sd}{        The indices at which we want to evaluate the loss (usually the nonzero indices of the unshifted data matrix).}
+\PY{l+s+sd}{    Q : np.array, shape [N, k]}
+\PY{l+s+sd}{        The matrix Q of a latent factor model.}
+\PY{l+s+sd}{    P : np.array, shape [k, D]}
+\PY{l+s+sd}{        The matrix P of a latent factor model.}
+\PY{l+s+sd}{    reg\PYZus{}lambda : float}
+\PY{l+s+sd}{        The regularization strength}
+\PY{l+s+sd}{          }
+\PY{l+s+sd}{    Returns}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    loss : float}
+\PY{l+s+sd}{           The loss of the latent factor model.}
+
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{n}{mean\PYZus{}sse\PYZus{}loss} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{values} \PY{o}{\PYZhy{}} \PY{n}{Q}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{p}{)}\PY{p}{[}\PY{n}{ixs}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+    \PY{n}{regularization\PYZus{}loss} \PY{o}{=}  \PY{n}{reg\PYZus{}lambda} \PY{o}{*} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{P}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{Q}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+    
+    \PY{k}{return} \PY{n}{mean\PYZus{}sse\PYZus{}loss} \PY{o}{+} \PY{n}{regularization\PYZus{}loss}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{alternating-optimization}{%
+\subsection{Alternating optimization}\label{alternating-optimization}}
+
+In the first step, we will approach the problem via alternating
+optimization, as learned in the lecture. That is, during each iteration
+you first update \(Q\) while having \(P\) fixed and then vice versa.
+
+    \hypertarget{task-2-implement-a-function-that-initializes-the-latent-factors-q-and-p}{%
+\subsubsection{\texorpdfstring{Task 2: Implement a function that
+initializes the latent factors \(Q\) and
+\(P\)}{Task 2: Implement a function that initializes the latent factors Q and P}}\label{task-2-implement-a-function-that-initializes-the-latent-factors-q-and-p}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{31}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{initialize\PYZus{}Q\PYZus{}P}\PY{p}{(}\PY{n}{matrix}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{init}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{random}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Initialize the matrices Q and P for a latent factor model.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    Parameters}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    matrix : sp.spmatrix, shape [N, D]}
+\PY{l+s+sd}{             The matrix to be factorized.}
+\PY{l+s+sd}{    k      : int}
+\PY{l+s+sd}{             The number of latent dimensions.}
+\PY{l+s+sd}{    init   : str in [\PYZsq{}svd\PYZsq{}, \PYZsq{}random\PYZsq{}], default: \PYZsq{}random\PYZsq{}}
+\PY{l+s+sd}{             The initialization strategy. \PYZsq{}svd\PYZsq{} means that we use SVD to initialize P and Q, \PYZsq{}random\PYZsq{} means we initialize}
+\PY{l+s+sd}{             the entries in P and Q randomly in the interval [0, 1).}
+
+\PY{l+s+sd}{    Returns}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    Q : np.array, shape [N, k]}
+\PY{l+s+sd}{        The initialized matrix Q of a latent factor model.}
+
+\PY{l+s+sd}{    P : np.array, shape [k, D]}
+\PY{l+s+sd}{        The initialized matrix P of a latent factor model.}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+    \PY{n}{N}\PY{p}{,} \PY{n}{D} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{shape}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} TODO: Compute Q and P}
+    \PY{k}{if} \PY{n}{init} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{svd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+        \PY{n}{U}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{V} \PY{o}{=} \PY{n}{svds}\PY{p}{(}\PY{n}{matrix}\PY{p}{,} \PY{n}{k}\PY{o}{=}\PY{n}{k}\PY{p}{)}
+        \PY{n}{S\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{n}{S}\PY{p}{)}
+        \PY{n}{Q} \PY{o}{=} \PY{n}{U}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{S\PYZus{}x}\PY{p}{)}
+        \PY{n}{P} \PY{o}{=} \PY{n}{V}
+    \PY{k}{elif} \PY{n}{init} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{random}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+        \PY{n}{Q} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{n}{N}\PY{p}{,} \PY{n}{k}\PY{p}{)}
+        \PY{n}{P} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{D}\PY{p}{)}
+    \PY{k}{else}\PY{p}{:}
+        \PY{k}{raise} \PY{n+ne}{ValueError}
+        
+    \PY{k}{assert} \PY{n}{Q}\PY{o}{.}\PY{n}{shape} \PY{o}{==} \PY{p}{(}\PY{n}{matrix}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{k}\PY{p}{)}
+    \PY{k}{assert} \PY{n}{P}\PY{o}{.}\PY{n}{shape} \PY{o}{==} \PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{matrix}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+    \PY{k}{return} \PY{n}{Q}\PY{p}{,} \PY{n}{P}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{task-3-implement-the-alternating-optimization-approach}{%
+\subsubsection{Task 3: Implement the alternating optimization
+approach}\label{task-3-implement-the-alternating-optimization-approach}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{32}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{latent\PYZus{}factor\PYZus{}alternating\PYZus{}optimization}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{non\PYZus{}zero\PYZus{}idx}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{val\PYZus{}idx}\PY{p}{,} \PY{n}{val\PYZus{}values}\PY{p}{,}
+                                           \PY{n}{reg\PYZus{}lambda}\PY{p}{,} \PY{n}{max\PYZus{}steps}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{init}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{random}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                           \PY{n}{log\PYZus{}every}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{eval\PYZus{}every}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Perform matrix factorization using alternating optimization. Training is done via patience,}
+\PY{l+s+sd}{    i.e. we stop training after we observe no improvement on the validation loss for a certain}
+\PY{l+s+sd}{    amount of training steps. We then return the best values for Q and P oberved during training.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    Parameters}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    M                 : sp.spmatrix, shape [N, D]}
+\PY{l+s+sd}{                        The input matrix to be factorized.}
+\PY{l+s+sd}{                      }
+\PY{l+s+sd}{    non\PYZus{}zero\PYZus{}idx      : np.array, shape [nnz, 2]}
+\PY{l+s+sd}{                        The indices of the non\PYZhy{}zero entries of the un\PYZhy{}shifted matrix to be factorized. }
+\PY{l+s+sd}{                        nnz refers to the number of non\PYZhy{}zero entries. Note that this may be different}
+\PY{l+s+sd}{                        from the number of non\PYZhy{}zero entries in the input matrix M, e.g. in the case}
+\PY{l+s+sd}{                        that all ratings by a user have the same value.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    k                 : int}
+\PY{l+s+sd}{                        The latent factor dimension.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    val\PYZus{}idx           : tuple, shape [2, n\PYZus{}validation]}
+\PY{l+s+sd}{                        Tuple of the validation set indices.}
+\PY{l+s+sd}{                        n\PYZus{}validation refers to the size of the validation set.}
+\PY{l+s+sd}{                      }
+\PY{l+s+sd}{    val\PYZus{}values        : np.array, shape [n\PYZus{}validation, ]}
+\PY{l+s+sd}{                        The values in the validation set.}
+\PY{l+s+sd}{                      }
+\PY{l+s+sd}{    reg\PYZus{}lambda        : float}
+\PY{l+s+sd}{                        The regularization strength.}
+\PY{l+s+sd}{                      }
+\PY{l+s+sd}{    max\PYZus{}steps         : int, optional, default: 100}
+\PY{l+s+sd}{                        Maximum number of training steps. Note that we will stop early if we observe}
+\PY{l+s+sd}{                        no improvement on the validation error for a specified number of steps}
+\PY{l+s+sd}{                        (see \PYZdq{}patience\PYZdq{} for details).}
+\PY{l+s+sd}{                      }
+\PY{l+s+sd}{    init              : str in [\PYZsq{}random\PYZsq{}, \PYZsq{}svd\PYZsq{}], default \PYZsq{}random\PYZsq{}}
+\PY{l+s+sd}{                        The initialization strategy for P and Q. See function initialize\PYZus{}Q\PYZus{}P for details.}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    log\PYZus{}every         : int, optional, default: 1}
+\PY{l+s+sd}{                        Log the training status every X iterations.}
+\PY{l+s+sd}{                    }
+\PY{l+s+sd}{    patience          : int, optional, default: 5}
+\PY{l+s+sd}{                        Stop training after we observe no improvement of the validation loss for X evaluation}
+\PY{l+s+sd}{                        iterations (see eval\PYZus{}every for details). After we stop training, we restore the best }
+\PY{l+s+sd}{                        observed values for Q and P (based on the validation loss) and return them.}
+\PY{l+s+sd}{                      }
+\PY{l+s+sd}{    eval\PYZus{}every        : int, optional, default: 1}
+\PY{l+s+sd}{                        Evaluate the training and validation loss every X steps. If we observe no improvement}
+\PY{l+s+sd}{                        of the validation error, we decrease our patience by 1, else we reset it to *patience*.}
+
+\PY{l+s+sd}{    Returns}
+\PY{l+s+sd}{    \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+sd}{    best\PYZus{}Q            : np.array, shape [N, k]}
+\PY{l+s+sd}{                        Best value for Q (based on validation loss) observed during training}
+\PY{l+s+sd}{                      }
+\PY{l+s+sd}{    best\PYZus{}P            : np.array, shape [k, D]}
+\PY{l+s+sd}{                        Best value for P (based on validation loss) observed during training}
+\PY{l+s+sd}{                      }
+\PY{l+s+sd}{    validation\PYZus{}losses : list of floats}
+\PY{l+s+sd}{                        Validation loss for every evaluation iteration, can be used for plotting the validation}
+\PY{l+s+sd}{                        loss over time.}
+\PY{l+s+sd}{                        }
+\PY{l+s+sd}{    train\PYZus{}losses      : list of floats}
+\PY{l+s+sd}{                        Training loss for every evaluation iteration, can be used for plotting the training}
+\PY{l+s+sd}{                        loss over time.                     }
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    converged\PYZus{}after   : int}
+\PY{l+s+sd}{                        it \PYZhy{} patience*eval\PYZus{}every, where it is the iteration in which patience hits 0,}
+\PY{l+s+sd}{                        or \PYZhy{}1 if we hit max\PYZus{}steps before converging. }
+
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    
+    \PY{c+c1}{\PYZsh{} TODO: Compute best\PYZus{}Q, best\PYZus{}P, validation\PYZus{}losses, train\PYZus{}losses and converged\PYZus{}after}
+    \PY{n}{nnz\PYZus{}mask} \PY{o}{=} \PY{n}{sp}\PY{o}{.}\PY{n}{coo\PYZus{}matrix}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{non\PYZus{}zero\PYZus{}idx}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{non\PYZus{}zero\PYZus{}idx}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{non\PYZus{}zero\PYZus{}idx}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{n}{M}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{uint8}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{tocsr}\PY{p}{(}\PY{p}{)}
+    \PY{n}{nnz\PYZus{}mask\PYZus{}col} \PY{o}{=} \PY{n}{nnz\PYZus{}mask}\PY{o}{.}\PY{n}{tocsc}\PY{p}{(}\PY{p}{)}
+    
+    \PY{n}{cols} \PY{o}{=} \PY{n}{nnz\PYZus{}mask}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{tolil}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{rows}
+    \PY{n}{rows} \PY{o}{=} \PY{n}{nnz\PYZus{}mask}\PY{o}{.}\PY{n}{tolil}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{rows}
+
+    \PY{n}{reg} \PY{o}{=} \PY{n}{Ridge}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{n}{reg\PYZus{}lambda}\PY{p}{,} \PY{n}{fit\PYZus{}intercept}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+    
+    \PY{n}{Q}\PY{p}{,}\PY{n}{P} \PY{o}{=} \PY{n}{initialize\PYZus{}Q\PYZus{}P}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{init}\PY{p}{)}
+    \PY{n}{train\PYZus{}losses} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{n}{validation\PYZus{}losses} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{n}{best\PYZus{}val\PYZus{}loss} \PY{o}{=} \PY{n}{best\PYZus{}Q} \PY{o}{=} \PY{n}{best\PYZus{}P} \PY{o}{=} \PY{n}{converged\PYZus{}after} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+    \PY{n}{train\PYZus{}idx} \PY{o}{=} \PY{n+nb}{tuple}\PY{p}{(}\PY{n}{non\PYZus{}zero\PYZus{}idx}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+    
+    \PY{n}{bef} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+    \PY{n}{times} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{k}{for} \PY{n}{it} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{max\PYZus{}steps}\PY{p}{)}\PY{p}{:}
+        \PY{k}{if} \PY{n}{bef} \PY{o}{!=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}
+            \PY{n}{times}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{bef}\PY{p}{)}
+        \PY{n}{bef} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{if} \PY{n}{it} \PY{o}{\PYZpc{}} \PY{n}{eval\PYZus{}every} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{train\PYZus{}loss} \PY{o}{=} \PY{n}{loss}\PY{p}{(}\PY{n}{M}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}\PY{o}{.}\PY{n}{A1}\PY{p}{,} \PY{n}{train\PYZus{}idx}\PY{p}{,} \PY{n}{Q}\PY{p}{,} \PY{n}{P}\PY{p}{,} \PY{n}{reg\PYZus{}lambda}\PY{p}{)}
+            \PY{n}{train\PYZus{}losses}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}loss}\PY{p}{)}
+            
+            \PY{n}{val\PYZus{}loss} \PY{o}{=} \PY{n}{loss}\PY{p}{(}\PY{n}{val\PYZus{}values}\PY{p}{,} \PY{n}{val\PYZus{}idx}\PY{p}{,} \PY{n}{Q}\PY{p}{,} \PY{n}{P}\PY{p}{,} \PY{n}{reg\PYZus{}lambda}\PY{p}{)}
+            \PY{n}{validation\PYZus{}losses}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{val\PYZus{}loss}\PY{p}{)}
+
+            \PY{k}{if} \PY{n}{best\PYZus{}val\PYZus{}loss} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0} \PY{o+ow}{or} \PY{n}{val\PYZus{}loss} \PY{o}{\PYZlt{}} \PY{n}{best\PYZus{}val\PYZus{}loss}\PY{p}{:}
+                \PY{n}{best\PYZus{}val\PYZus{}loss} \PY{o}{=} \PY{n}{val\PYZus{}loss}
+                \PY{n}{best\PYZus{}Q} \PY{o}{=} \PY{n}{Q}
+                \PY{n}{best\PYZus{}P} \PY{o}{=} \PY{n}{P}
+                \PY{n}{current\PYZus{}patience} \PY{o}{=} \PY{n}{patience}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{current\PYZus{}patience} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{l+m+mi}{1}
+
+            \PY{k}{if} \PY{n}{current\PYZus{}patience} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{n}{converged\PYZus{}after} \PY{o}{=} \PY{n}{it} \PY{o}{\PYZhy{}} \PY{n}{patience}\PY{o}{*}\PY{n}{eval\PYZus{}every}
+                \PY{k}{break}        
+            
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Iteration }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{, training loss: }\PY{l+s+si}{\PYZob{}:.3f\PYZcb{}}\PY{l+s+s2}{, validation loss: }\PY{l+s+si}{\PYZob{}:.3f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{it}\PY{p}{,} \PY{n}{train\PYZus{}loss}\PY{p}{,} \PY{n}{val\PYZus{}loss}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} fix Q and update P}
+        \PY{c+c1}{\PYZsh{} fix Q and update P}
+        \PY{k}{for} \PY{n}{rating\PYZus{}idx} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{M}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+            \PY{n}{nnz\PYZus{}idx} \PY{o}{=} \PY{n}{cols}\PY{p}{[}\PY{n}{rating\PYZus{}idx}\PY{p}{]}
+            \PY{n}{res} \PY{o}{=} \PY{n}{reg}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{Q}\PY{p}{[}\PY{n}{nnz\PYZus{}idx}\PY{p}{]}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{n}{M}\PY{p}{[}\PY{n}{nnz\PYZus{}idx}\PY{p}{,} \PY{n}{rating\PYZus{}idx}\PY{p}{]}\PY{o}{.}\PY{n}{toarray}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n}{P}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{rating\PYZus{}idx}\PY{p}{]} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{coef\PYZus{}}
+
+        \PY{k}{for} \PY{n}{user\PYZus{}idx} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{M}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+            \PY{n}{nnz\PYZus{}idx} \PY{o}{=} \PY{n}{rows}\PY{p}{[}\PY{n}{user\PYZus{}idx}\PY{p}{]}
+            \PY{n}{res} \PY{o}{=} \PY{n}{reg}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{P}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{nnz\PYZus{}idx}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{n}{M}\PY{p}{[}\PY{n}{user\PYZus{}idx}\PY{p}{,} \PY{n}{nnz\PYZus{}idx}\PY{p}{]}\PY{o}{.}\PY{n}{toarray}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n}{Q}\PY{p}{[}\PY{n}{user\PYZus{}idx}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{res}\PY{o}{.}\PY{n}{coef\PYZus{}}
+            
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Converged after }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ iterations, on average }\PY{l+s+si}{\PYZob{}:.3f\PYZcb{}}\PY{l+s+s2}{s per iteration}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{converged\PYZus{}after}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{times}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+    
+    \PY{k}{return} \PY{n}{best\PYZus{}Q}\PY{p}{,} \PY{n}{best\PYZus{}P}\PY{p}{,} \PY{n}{validation\PYZus{}losses}\PY{p}{,} \PY{n}{train\PYZus{}losses}\PY{p}{,} \PY{n}{converged\PYZus{}after}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{train-the-latent-factor-nothing-to-do-here}{%
+\subsubsection{Train the latent factor (nothing to do
+here)}\label{train-the-latent-factor-nothing-to-do-here}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{33}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Q}\PY{p}{,} \PY{n}{P}\PY{p}{,} \PY{n}{val\PYZus{}loss}\PY{p}{,} \PY{n}{train\PYZus{}loss}\PY{p}{,} \PY{n}{converged} \PY{o}{=} \PY{n}{latent\PYZus{}factor\PYZus{}alternating\PYZus{}optimization}\PY{p}{(}\PY{n}{M\PYZus{}shifted}\PY{p}{,} \PY{n}{nonzero\PYZus{}indices}\PY{p}{,} 
+                                                                               \PY{n}{k}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{val\PYZus{}idx}\PY{o}{=}\PY{n}{val\PYZus{}idx}\PY{p}{,}
+                                                                               \PY{n}{val\PYZus{}values}\PY{o}{=}\PY{n}{val\PYZus{}values\PYZus{}shifted}\PY{p}{,} 
+                                                                               \PY{n}{reg\PYZus{}lambda}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}4}\PY{p}{,} \PY{n}{init}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{random}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                                                               \PY{n}{max\PYZus{}steps}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Iteration 0, training loss: 15601179.586, validation loss: 21937.249
+Iteration 1, training loss: 2516.317, validation loss: 753.995
+Iteration 2, training loss: 540.570, validation loss: 523.066
+Iteration 3, training loss: 194.908, validation loss: 513.264
+Iteration 4, training loss: 95.040, validation loss: 532.319
+Iteration 5, training loss: 57.519, validation loss: 548.417
+Iteration 6, training loss: 40.974, validation loss: 535.613
+Iteration 7, training loss: 32.765, validation loss: 534.745
+Iteration 8, training loss: 28.356, validation loss: 530.761
+Iteration 9, training loss: 25.839, validation loss: 527.236
+Iteration 10, training loss: 24.336, validation loss: 524.362
+Iteration 11, training loss: 23.395, validation loss: 521.984
+Iteration 12, training loss: 22.792, validation loss: 517.433
+Iteration 13, training loss: 22.386, validation loss: 511.743
+Iteration 14, training loss: 22.102, validation loss: 507.319
+Iteration 15, training loss: 21.895, validation loss: 504.711
+Iteration 16, training loss: 21.737, validation loss: 502.432
+Iteration 17, training loss: 21.613, validation loss: 500.809
+Iteration 18, training loss: 21.511, validation loss: 499.392
+Iteration 19, training loss: 21.425, validation loss: 498.078
+Iteration 20, training loss: 21.350, validation loss: 497.056
+Iteration 21, training loss: 21.283, validation loss: 495.862
+Iteration 22, training loss: 21.223, validation loss: 494.797
+Iteration 23, training loss: 21.167, validation loss: 493.988
+Iteration 24, training loss: 21.114, validation loss: 493.125
+Iteration 25, training loss: 21.065, validation loss: 492.341
+Iteration 26, training loss: 21.017, validation loss: 491.748
+Iteration 27, training loss: 20.972, validation loss: 491.345
+Iteration 28, training loss: 20.929, validation loss: 490.784
+Iteration 29, training loss: 20.887, validation loss: 490.268
+Iteration 30, training loss: 20.847, validation loss: 489.816
+Iteration 31, training loss: 20.807, validation loss: 489.395
+Iteration 32, training loss: 20.769, validation loss: 488.989
+Iteration 33, training loss: 20.732, validation loss: 488.596
+Iteration 34, training loss: 20.695, validation loss: 488.198
+Iteration 35, training loss: 20.659, validation loss: 487.797
+Iteration 36, training loss: 20.624, validation loss: 487.379
+Iteration 37, training loss: 20.590, validation loss: 486.958
+Iteration 38, training loss: 20.556, validation loss: 486.527
+Iteration 39, training loss: 20.523, validation loss: 486.110
+Iteration 40, training loss: 20.490, validation loss: 485.691
+Iteration 41, training loss: 20.458, validation loss: 485.294
+Iteration 42, training loss: 20.427, validation loss: 484.889
+Iteration 43, training loss: 20.396, validation loss: 484.509
+Iteration 44, training loss: 20.366, validation loss: 484.115
+Iteration 45, training loss: 20.336, validation loss: 483.745
+Iteration 46, training loss: 20.306, validation loss: 483.358
+Iteration 47, training loss: 20.277, validation loss: 482.976
+Iteration 48, training loss: 20.248, validation loss: 482.730
+Iteration 49, training loss: 20.220, validation loss: 482.474
+Iteration 50, training loss: 20.192, validation loss: 482.170
+Iteration 51, training loss: 20.164, validation loss: 481.861
+Iteration 52, training loss: 20.137, validation loss: 481.542
+Iteration 53, training loss: 20.110, validation loss: 481.214
+Iteration 54, training loss: 20.084, validation loss: 480.872
+Iteration 55, training loss: 20.058, validation loss: 480.517
+Iteration 56, training loss: 20.032, validation loss: 480.160
+Iteration 57, training loss: 20.006, validation loss: 479.798
+Iteration 58, training loss: 19.981, validation loss: 479.445
+Iteration 59, training loss: 19.956, validation loss: 479.091
+Iteration 60, training loss: 19.931, validation loss: 478.747
+Iteration 61, training loss: 19.907, validation loss: 478.401
+Iteration 62, training loss: 19.883, validation loss: 478.065
+Iteration 63, training loss: 19.859, validation loss: 477.726
+Iteration 64, training loss: 19.835, validation loss: 477.395
+Iteration 65, training loss: 19.811, validation loss: 477.063
+Iteration 66, training loss: 19.788, validation loss: 476.738
+Iteration 67, training loss: 19.765, validation loss: 476.413
+Iteration 68, training loss: 19.742, validation loss: 476.094
+Iteration 69, training loss: 19.720, validation loss: 475.775
+Iteration 70, training loss: 19.697, validation loss: 475.463
+Iteration 71, training loss: 19.675, validation loss: 475.150
+Iteration 72, training loss: 19.653, validation loss: 474.844
+Iteration 73, training loss: 19.631, validation loss: 474.538
+Iteration 74, training loss: 19.609, validation loss: 474.238
+Iteration 75, training loss: 19.588, validation loss: 473.939
+Iteration 76, training loss: 19.567, validation loss: 473.645
+Iteration 77, training loss: 19.546, validation loss: 473.352
+Iteration 78, training loss: 19.525, validation loss: 473.063
+Iteration 79, training loss: 19.504, validation loss: 472.776
+Iteration 80, training loss: 19.483, validation loss: 472.493
+Iteration 81, training loss: 19.463, validation loss: 472.212
+Iteration 82, training loss: 19.442, validation loss: 471.934
+Iteration 83, training loss: 19.422, validation loss: 471.658
+Iteration 84, training loss: 19.402, validation loss: 471.386
+Iteration 85, training loss: 19.382, validation loss: 471.115
+Iteration 86, training loss: 19.363, validation loss: 470.848
+Iteration 87, training loss: 19.343, validation loss: 470.583
+Iteration 88, training loss: 19.323, validation loss: 470.321
+Iteration 89, training loss: 19.304, validation loss: 470.061
+Iteration 90, training loss: 19.285, validation loss: 469.804
+Iteration 91, training loss: 19.266, validation loss: 469.549
+Iteration 92, training loss: 19.247, validation loss: 469.297
+Iteration 93, training loss: 19.228, validation loss: 469.047
+Iteration 94, training loss: 19.209, validation loss: 468.801
+Iteration 95, training loss: 19.191, validation loss: 468.556
+Iteration 96, training loss: 19.172, validation loss: 468.314
+Iteration 97, training loss: 19.154, validation loss: 468.075
+Iteration 98, training loss: 19.136, validation loss: 467.838
+Iteration 99, training loss: 19.118, validation loss: 467.603
+Converged after -1 iterations, on average 4.454s per iteration
+\end{Verbatim}
+
+    \hypertarget{plot-the-validation-and-training-losses-over-for-each-iteration-nothing-to-do-here}{%
+\subsubsection{Plot the validation and training losses over for each
+iteration (nothing to do
+here)}\label{plot-the-validation-and-training-losses-over-for-each-iteration-nothing-to-do-here}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{34}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+\PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Alternating optimization, k=100}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{train\PYZus{}loss}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Training iteration}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Loss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+
+\PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{val\PYZus{}loss}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Validation loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Training iteration}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Loss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

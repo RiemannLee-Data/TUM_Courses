@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\usepackage[final]{style}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{verbatim}
+\usepackage{graphicx}       % for figures
+
+\usepackage{caption}
+\usepackage{graphicx, subfig}
+
+\usepackage{amsmath,bm}
+
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+
+% Self-defined macros
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\proba}[1]{\mathsf{P}(#1)}
+\newcommand{\expect}[1]{\mathsf{E}[#1]}
+\newcommand{\var}[1]{\mathsf{Var}(#1)}
+\newcommand\defeq{\stackrel{\text{!}}{=}}
+
+\title{Exercise 10 of Machine Learning [IN 2064]}
+
+\author{
+  Name: Yiman Li \\
+  \textbf{Matr-Nr: 03724352} \\
+  cooperate with Kejia Chen(03729686)\\
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+Failed to accomplish the total mathematical task! Can't tell the difference between condition a and b!\\
+
+One of the nice properties of logistic regression is that the logistic cost function (or max-entropy) is convex, and thus we are guaranteed to find the global cost minimum. But, once we stack logistic activation functions in a multi-layer neural network, we’ll lose this convexity, and so in practice local maxima of the likelihood may be found, corresponding to local minima of the error function, see in \cite{bishop2007}. So normally, we shall say that the linear regression loss $\mathcal{L}_{LS}(\bm{w}_{LS}^*)$ is smaller than the neural nerwork loss $\mathcal{L}_{NN}(\bm{W}^*_{LS})$.
+\section*{Problem 2}
+Failed to accomplish the total programming task!\\
+
+The unfinished version to be seen in the end.
+
+% References
+\small
+\bibliographystyle{plain}
+\bibliography{bibliography10}
+\end{document}

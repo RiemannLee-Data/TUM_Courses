@@ -1,0 +1,258 @@
+\documentclass{article}
+
+\usepackage[final]{style}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{verbatim}
+\usepackage{graphicx}       % for figures
+
+\usepackage{caption}
+\usepackage{graphicx, subfig}
+
+\usepackage{amsmath,bm}
+
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+
+% Self-defined macros
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\proba}[1]{\mathsf{P}(#1)}
+\newcommand{\expect}[1]{\mathsf{E}[#1]}
+\newcommand{\var}[1]{\mathsf{Var}(#1)}
+\newcommand\defeq{\stackrel{\text{!}}{=}}
+
+\title{Exercise 11 of Machine Learning [IN 2064]}
+
+\author{
+  Name: Yiman Li \\
+  \textbf{Matr-Nr: 03724352} \\
+  cooperate with Kejia Chen(03729686)\\
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+After adding the data of new user Leslie, and using the SVD decomposition function in MATLAB, we get that:
+\begin{equation}
+	\bm{M}' = \bm{U} \bm{\Sigma} \bm{V}^T
+\end{equation}
+namely:
+\begin{equation}
+	\begin{split}
+	\left[
+		\begin{array}{ccccc}
+			1 & 1 & 1 & 0 & 0\\
+			3 & 3 & 3 & 0 & 0\\
+			4 & 4 & 4 & 0 & 0\\
+			5 & 5 & 5 & 0 & 0\\
+			0 & 0 & 0 & 4 & 4\\
+			0 & 0 & 0 & 5 & 5\\
+			0 & 0 & 0 & 2 & 2\\
+			0 & 3 & 0 & 0 & 4
+		\end{array}
+	\right] &= \left[
+		\begin{array}{ccc}
+			0.1375 & -0.0170 \\
+			0.4126 & -0.0511 \\
+			0.5502 & -0.0681 \\
+			0.6877 & -0.0852 \\
+			0.0417 & 0.5627 \\
+			0.0521 & 0.7033 \\
+			0.0208 & 0.2813 \\
+			0.1739 & 0.3079 
+		\end{array}
+	\right] \left[
+		\begin{array}{ccc}
+		12.5217 & 0 \\
+		0 & 9.9377
+		\end{array}
+	\right]\\
+	& \quad	\left[
+		\begin{array}{ccccc}
+			 0.5602 & -0.0874 & -0.2886 & -0.3028 & 0.7096\\
+			0.6019 & 0.0056 & 0.5067 & 0.6172 & -0.0050\\
+		\end{array}
+	\right]
+\end{split}
+\end{equation}
+Here, $\bm{U}$ connects people to concepts, and $U(8,1)=0.1739$ is smaller than some of the other entries in the first column, because Leslie doesn't rate science fiction very high compared to John and Jack. In contrast, Leslie may more likely to see romance movie since $U(8,2)=0.3079$ is larger than $U(8,1)$.
+
+
+
+\section*{Problem 2}
+We already know that 
+\begin{eqnarray}
+p(\bm{z}) =& \mathcal{N}(\bm{z} | \bm{0}, \bm{I})\\
+p(\bm{x}|\bm{z}) =& \mathcal{N}(\bm{Wz+\mu}, \Phi)
+\end{eqnarray}
+For the original data, we have the corresponding log likelihood as below:
+\begin{equation}
+	\begin{aligned}
+		\mathrm{ln}\ p(\bm{X}|\bm{\mu}, \bm{W}, \bm{\Phi})
+		&= \sum_{n=1}^{N} \mathrm{ln}\ p(\bm{x}_n | \bm{W}, \bm{\mu}, \sigma^2)\\
+		&= -\frac{ND}{2}\mathrm{ln}(2\pi) - \frac{N}{2}\mathrm{ln}|\bm{C}| -\frac{1}{2}\sum_{n=1}^{N}(\bm{x}_n-\mu)^T\bm{C}^{-1}(\bm{x}_n-\bm{\mu})
+	\end{aligned}	
+\end{equation}
+where $\bm{C}$ is defined by
+\begin{equation}
+	\bm{C} = \bm{WW}^T + \bm{\Phi}
+\end{equation}
+
+\begin{itemize}
+	\item Setting the derivative of the log likelihood with respect to $\bm{\mu}$ equal to zero gives the expected result $\bm{\mu} = \bm{\bar{x}}$ where $\bm{\bar{x}}$ is the mean value of the data.
+	
+	\item Maximization with respect to $\bm{W}$ according to \cite{bishop2007}, we have
+	\begin{equation}
+		\bm{W}_{ML} = \bm{U}_M(\bm{L}_M - \bm{\Phi})^{\frac{1}{2}}\bm{R}
+	\end{equation}
+	where $\bm{U}_M$ is a $D\times M$ matrix whose columns are given by any subset of the eigenvectors, $\bm{L}_M$ has elements given by the corresponding eigenvalues $\lambda_i$, and $\bm{R}$ is an arbitary $M \times M$ orthogonal matrix.
+	
+	\item Maximization with respect to $\bm{\Phi}$ according to \cite{bishop2007}, we have
+	\begin{equation}
+		\phi_i = \frac{1}{D-M} \sum_{i=M+1}^{D} \lambda_i
+	\end{equation} 
+	where D is the original data dimension and M is the number of principle eigenvectors.
+\end{itemize}
+After doing a linear transformation $\bm{y} = \bm{Ax}$, the mean value and the covariance is now $\bm{A\mu}_{ML}$ and $\bm{A\Phi}_{ML}\bm{A}^T$, which is exactly the corresponding maximum likelihood solution for the transformed data set. And when set the derivative with respect to $\bm{W}$ in the transformed space, since the elements in matrix $\bm{L}_M$ is scaled by $\bm{AA}^T$ and then take the power of $\frac{1}{2}$, so the new solution is now $\bm{AW}_{ML}$.
+
+And since the matrix $\bm{A}$ is orthogonal, so the quantity $\bm{WW}^T$ appears in the covariance matrix $\bm{C}$ takes the form
+\begin{equation}
+	\bm{\tilde{W}\tilde{W}}^T = \bm{WAA}^T\bm{W}^T = \bm{WW}^T
+\end{equation}
+and hence is independent of $\bm{A}$. We can also get this solution by simple matching patterns the MLE solutions.
+
+Now, if $\bm{A}$ is orthogonal and $\bm{\Phi}$ a scaled indentity matrix, the model characteristics are also preserved since
+\begin{equation}
+	\bm{A\Phi}_x\bm{A}^T = \sigma^2\bm{IAA}^T = \sigma^2\bm{I}^2 = \sigma^2\bm{I}
+\end{equation}
+\section*{Problem 3}
+Suppose we make a matrix transformation formulated by $\bm{Y} = \bm{XW}+\bm{b}$, where $\bm{W} \in \mathbb{R}^{D \times D}$, and $\bm{b} \in \mathbb{R}^{N \times D}$, then we have
+\begin{equation}
+	\begin{aligned}
+		Var(\bm{Y}) 
+		&= \bm{W}^T (\frac{1}{N}\bm{X}^T\bm{X} - \bm{\bar{x}}\bm{x}^T) \bm{W} \\
+		&= \bm{W}^T (\bm{\Gamma \Lambda} \bm{\Gamma}^T) \bm{W}
+	\end{aligned}
+\end{equation}
+
+\begin{itemize}
+	\item a) With $\bm{S}$ being the identity matrix $\bm{I}$, which means that $\bm{Y}$ remains the same as $\bm{X}$ after the transfomation, so there are still $70\% $ of the variance preserved.
+	
+	\item b) With $\bm{R}$ being the row orthogonal matrix, we have $ Var(\bm{Y}) = \bm{R}^T (\bm{\Gamma \Lambda} \bm{\Gamma}^T) \bm{R}$, with $\bm{\Gamma}' = \bm{R}^T\bm{\Gamma}$. Here $\bm{R}^T\bm{\Gamma} \bm{\Gamma}^T\bm{R} = \bm{I}$, and $\bm{\Gamma}^T\bm{R}\bm{R}^T\bm{\Gamma} = \bm{I}$, which means that $\bm{\Gamma}'$ is still a orthonormal matrix, so there are $70\%$ of the variance being preserved.
+	
+	\item c) With $\bm{P} = diag(5, -5, \cdots, 5, -5)$, then the new covariance matrix is now scaled by a factor 25, which will not change what the matrix looks like, so it still preserve $70\%$ of the variance.
+	
+	\item d) With $\bm{Q} = diag(1,2,3, \cdots, D-1, D)$, which means the new covariance matrix is now $diag(\lambda_1, 4\lambda_2, 9\lambda_3, \cdots)$, so we have no idea what the order of principle components in new matrix will be, which means the preserved variance can not be told without additional information.
+	
+	\item e) Since adding the same value to the original matrix will not change the covatriance matrix, so we still preserve $70\%$ of original variance.
+	
+	\item f) Since $rank(\bm{A}) = 5$, which means that the data lies in a 5-dimensional space or subspace, so the top 5 principle components captures all the variance, that is to say $100\%$.
+
+\end{itemize}
+
+\section*{Problem 4}
+a) The mean of the $N$ points is shown as below:
+\begin{equation}
+	\bm{\bar{x}} = \frac{1}{N} \cdot \bm{X}^T \cdot \bm{1}_N =
+	\left[
+	\begin{array}{ccc}
+	2 & 1 & 1
+	\end{array}
+	\right]	
+\end{equation}
+Shift the points by their mean $\bm{\bar{x}}$, we get
+\begin{equation}
+	\bm{\tilde{X}} = \bm{X} - \bm{\bar{x}} = 
+	\left[
+	\begin{array}{ccc}
+	2 & 2 & 1\\
+	0 & 0 & -3\\
+	2 & -2 & 1\\
+	-4 & 0 & 1	
+	\end{array}
+	\right]	
+\end{equation}
+So the variance is
+\begin{equation}
+	\bm{\Sigma_{X}} = Var(\bm{\tilde{X}}) = 
+	\left[
+	\begin{array}{ccc}
+	6 & 0 & 0\\
+	0 & 2 & 0\\
+	0 & 0 & 3	
+	\end{array}
+	\right] = 
+	\left[
+	\begin{array}{ccc}
+	1 & 0 & 0\\
+	0 & 1 & 0\\
+	0 & 0 & 1	
+	\end{array}
+	\right]\times
+	\left[
+	\begin{array}{ccc}
+	6 & 0 & 0\\
+	0 & 2 & 0\\
+	0 & 0 & 3	
+	\end{array}
+	\right] \times
+	\left[
+	\begin{array}{ccc}
+	1 & 0 & 0\\
+	0 & 1 & 0\\
+	0 & 0 & 1	
+	\end{array}
+	\right]
+\label{covariance}
+\end{equation}
+\begin{itemize}
+	\item The first principle component is $[1 \ 0 \ 0]^T$, with variance value 6;
+	\item The second principle component is $[0 \ 0 \ 1]^T$, with variance value 3;
+	\item The third principle component is $[0 \ 1 \ 0]^T$, with variance value 2.
+\end{itemize}
+ 
+b) According to the function \ref{covariance}, we can see that the top-2 principle conponents are 6 and 3, so we obtain the projected data $\bm{Y}$ as below:
+\begin{equation}
+	\bm{Y} = \left[
+	\begin{array}{ccc}
+	2 & 2 & 1\\
+	0 & 0 & -3\\
+	2 & -2 & 1\\
+	-4 & 0 & 1	
+	\end{array}
+	\right]	\times
+	\left[
+	\begin{array}{cc}
+		1 & 0\\
+		0 & 0\\
+		0 & 1
+	\end{array}
+	\right] = 
+	\left[
+		\begin{array}{ccc}
+			2 & 1\\
+			0 & -3\\
+			2 & 1\\
+			-4 & 1	
+		\end{array}
+	\right]
+\end{equation}
+
+c)When new data point have exactly the same PCA perfomance, which means that the covariance remains the same after adding this new data point(scaling factor will not change what the covariance matrix looks like), so we can say that $\bm{x}_5 = [2 \ 1 \ 1]$
+
+\section*{Problem 5}
+To be seen in the end.
+
+% References
+\small
+\bibliographystyle{plain}
+\bibliography{bibliography11}
+\end{document}

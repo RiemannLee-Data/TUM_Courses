@@ -1,0 +1,23 @@
+\begin{thebibliography}{1}
+
+\bibitem{cs229-prob}
+Arian Maleki and Tom Do.
+\newblock Review of probability theory.
+\newblock \url{http://cs229.stanford.edu/summer2019/cs229-prob.pdf}.
+
+\bibitem{IMM2012-03274}
+K.~B. Petersen and M.~S. Pedersen.
+\newblock The matrix cookbook, nov 2012.
+
+\bibitem{CI}
+Hossein Pishro-Nik.
+\newblock Conditional independence.
+\newblock
+  \url{https://www.probabilitycourse.com/chapter1/1_4_4_conditional_independence.php}.
+
+\bibitem{ConvexFuction}
+Wikipedia.
+\newblock Convex function.
+\newblock \url{https://en.wikipedia.org/wiki/Convex_function}.
+
+\end{thebibliography}

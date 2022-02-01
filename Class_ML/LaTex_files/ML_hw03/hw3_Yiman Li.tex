@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\usepackage[final]{style}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{verbatim}
+\usepackage{graphicx}       % for figures
+
+\usepackage{amsmath}
+
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+
+% Self-defined macros
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\proba}[1]{\mathsf{P}(#1)}
+\newcommand{\expect}[1]{\mathsf{E}[#1]}
+\newcommand{\var}[1]{\mathsf{Var}(#1)}
+
+\title{Exercise 03 of Machine Learning [IN 2064]}
+
+\author{
+  Name: Yiman Li \\
+  \textbf{Matr-Nr: 03724352} \\
+  cooperate with Kejia Chen(03729686)\\
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+Set $f(x) = \theta^t, g(x) = (1-\theta)^h$, so here $h(x) = f(x)g(x) $, then the first derivative of this likelihood is
+\[ h'(x) = f'(x)g(x) + f(x)g'(x) = t\theta^{t-1}(1-\theta)^h -h\theta^t(1-\theta)^{h-1}\]
+and using the same strategy, the second derivative of this likelihood is
+\[ h''(x) = t(t-1)\theta^{t-2}(1-\theta)^h - 2t\theta^{t-1}h(1-\theta)^{h-1} + h(h-1)\theta^t(1-\theta)^{h-2}\]
+Then with respect to the log-likelihood $l(x) = \mathrm{log}\theta^t(1-\theta)^h = t\mathrm{log}\theta + h\mathrm{log}(1-\theta)$, the first derivative of this likelihood is:
+\[ l'(x) = \frac{t}{\theta} -\frac{h}{1-\theta}\]
+and the second derivative of this likelihood is:
+\[ l''(x) = -\frac{t}{\theta^2} - \frac{h}{(1-\theta)^2}\]
+\section*{Problem 2}
+\begin{itemize}
+	\item The first derivative of the log function is:
+	\[ \frac{\mathrm{d\ log}f(\theta)}{\mathrm{d}\theta} = \frac{1}{f(\theta)}\frac{\mathrm{d}f(\theta)}{\mathrm{d}\theta}\]
+	Since $f(\theta)$ is positive and differentiable, so
+	\[\mathrm{when} \frac{\mathrm{d}f(\theta)}{\mathrm{d}\theta} =0,\mathrm{we\ will\ also\ have} \frac{\mathrm{d\ log}f(\theta)}{\mathrm{d}\theta}=0\]
+	which means that every local maximum of $\mathrm{log} f(\theta)$ is also a local maximum of function $f(\theta)$.
+	\item Since every local maximum of log$f(\theta)$ is also a local maximum of the differentiable, positive function $f(\theta)$, so we can use log$f(\theta)$ to simplify the problem when we are going to maximize the likelihood function.
+\end{itemize}
+
+
+\section*{Problem 3}
+According to the description, we have
+\[ p(\theta) = Beta(\theta|6,4) = \frac{\varGamma(6)\varGamma(4)}{\varGamma(10)}\theta^5(1-\theta)^3 = \frac{1}{210}\cdot \theta^5(1-\theta)^3, \theta \in [0,1] \]
+so
+\[ p(\theta|\mathcal{D}) = \frac{p(\mathcal{D}|\theta) \cdot p(\theta)}{p(\mathcal{D})} \propto p(\mathcal{D}|\theta) \cdot p(\theta) \propto \theta^{M+5}(1-\theta)^{N+3} \]
+Then consider the logarithm
+\[ \theta_{MAP} = \mathrm{arg\ max\ log}\ p(\theta|\mathcal{D}) = \mathrm{arg\ max}\ ((M+5)\mathrm{log}\theta + (N+3)\mathrm{log}(1-\theta)) \]
+Using the first derivative function, we can get:
+\[ \frac{M+5}{\theta} - \frac{N+3}{1-\theta} = 0\]
+That is
+\[ \theta_{MAP} = \frac{M+5}{M+N+8} = \frac{3}{4}\]
+So any (M,N) that can satisfy the equation that $M=3N+4$ can lead to such result. For example, $(M,N) = \{(7,1),(10,2),(13,3),\dots\} $
+\section*{Problem 4}
+Since a Beta Distribution with parameter $a,b$ has the mean value of $\frac{a}{a+b}$, so the posterior distribution which known as $Beta(\theta | a+m,b+l)$ has the mean value of $\frac{a+m}{a+b+m+l}$, so we need to verify that
+\[ \frac{a+m}{a+b+m+l} = \frac{a+b}{a+b+m+l} \cdot \frac{a}{a+b} + \frac{m+l}{a+b+m+l} \cdot \frac{m}{m+l} \]
+Here, $\lambda = \frac{a+b}{a+b+m+l} \in (0,1)$, we can figure that
+\begin{eqnarray}
+\frac{a}{a+b} - \frac{a+m}{a+m+b+l} = \frac{al-bm}{(a+b)(a+m+b+l)}\\
+\frac{m}{m+l} - \frac{a+m}{a+m+b+l} = \frac{bm-al}{(m+l)(a+m+b+l)}
+\end{eqnarray}
+From these two equations we can see that the denominators are always positive, while the numerators of the two equations share the different signs(with one positive and another one negative). Thus we can draw a conclusion that the mean value $\mathbb{E}[\theta |D]$ of $\theta$ lies between the prior mean of  and the maximum likelihood estimate for $\theta$.
+\section*{Problem 5}
+
+
+\end{document}

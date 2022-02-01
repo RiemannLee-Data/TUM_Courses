@@ -1,0 +1,161 @@
+\documentclass{article}
+
+\usepackage[final]{style}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{verbatim}
+\usepackage{graphicx}       % for figures
+\usepackage{amsmath,bm}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+
+% Self-defined macros
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\proba}[1]{\mathsf{P}(#1)}
+\newcommand{\expect}[1]{\mathsf{E}[#1]}
+\newcommand{\var}[1]{\mathsf{Var}(#1)}
+
+\title{Exercise 01 of Machine Learning [IN 2064]}
+
+\author{
+  Name: Yiman Li \\
+  \textbf{Matr-Nr: 03724352} \\
+  cooperate with Kejia Chen(03729686)\\
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+In order for the matrix product to exist, the number of columns in the former matrix must equal the number of rows in the latter matrix, here the function $f$ can be described as:
+\[ f(\bm{x,y,Z}) = (\bm{x}^T)^{1 \times M}\bm{A}y^{N \times 1} + \bm{Bx}^{M \times 1} - (\bm{y}^T)^{1 \times N}\bm{CZ}^{P \times Q}\bm{D} - (\bm{y}^T)^{1 \times N}\bm{E}^T\bm{y}^{N \times 1} + \bm{F} \]
+Then using the aforementioned rules, we can get
+\[\bm{A} \in \mathbb{R}^{M \times N}, \bm{B} \in \mathbb{R}^{1 \times M}, \bm{C} \in \mathbb{R}^{N \times P}, \bm{D} \in \mathbb{R}^{Q \times 1}, \bm{E} \in \mathbb{R}^{N \times N}, \bm{F} \in \mathbb{R}^{1 \times 1}\]
+
+\section*{Problem 2}
+Now that the function $ f(x) = \sum_{i=1}^N\sum_{j=1}^{N}x_ix_jM_{ij}  \in \mathbb{R}^{N\times N} $, so we can simply rewrite the function as $ f(\bm{x}) = \bm{x}^T\bm{Mx} $ just on the condition that the number of columns in the former matrix must equal the number of rows in the latter matrix in matrix product.
+
+\section*{Problem 3}
+a) When $ R(\bm{A})=R(\bm{A,b})=M $, then we can safely say that the solution is unique for each choice of b. Here $R$ represents "Rank of the Matrix".\\
+b) Notice that the matrix has a zero eigenvalue, which means the $ R(\bm{A} < 5)$, so we can not safely draw a conclusion that this matrix is diagonalizable, so the Equation $(1)$ can not always find a unique solution $ \bm{x} $ for any choice of $ \bm{b} $.
+
+\section*{Problem 4}
+Here we can use the property that the determinant of $\bm{A}$ is equal to the product of its eigenvalues $|\bm{A}|=\prod_{i=1}^{n} \lambda_i$. Now that the matrix $\bm{A}$ is invertible, which means that $|\bm{A}|\not = 0$, so we can say that one of the eigenvalues of matrix $\bm{A}$ is zero since $\bm{A}$ is invertible.
+
+\section*{Problem 5}
+According to reference \cite{strang09}, since a symmetric matrix $\bm{A} \in \mathbb{R}^{N \times N}$ has orthogonal eigenvectors and is thus orthogonal, we can therefore represent $\bm{A}$ as $\bm{A}=\bm{U}\varLambda \bm{U}^T$, then we can show that
+\[ \bm{x}^T\bm{A}\bm{x} = \bm{x}^T\bm{U}\varLambda \bm{U}^T\bm{x} = \bm{y}^T\varLambda \bm{y} = \sum_{i=1}^{n}\lambda_i y_i^2\]
+where $\bm{y}=\bm{U}^T\bm{x}$. Because $y_i^2$ is always positive, the sign of this expression depends entirely on the $\lambda_i's$. So if all eigenvalues $\lambda_i's \geq 0$, then it is positive semidefinite.\\
+
+Conversely, if a matrix is positive semidefinite, then we assume that this matrix $\bm{A}$ has a negative eigenvalue $\lambda < 0$ and its correspongding eigenvector $\bm{x}$, so we can get
+\[ \bm{Ax}=\lambda \bm{x} \]
+then we multiply the two sides of the equetion by the transpose of the eigenvector $\bm{x}^T$, which means
+\[ \bm{x}^T\bm{Ax} = \bm{x}^T \lambda \bm{x} = \lambda \bm{x}^T\bm{x} = \lambda\bm{x}^2 < 0\]
+this result is contrary to the condition that the matrix is positive semidefiniten, so the assumption that the matrix has a negative eigenvalue doesn't make sense. So in the end we can draw a conclusion that a positive semidefinite matrix has no negative eigenvalues.
+
+\section*{Problem 6}
+Choose an arbitrary vextor $\bm{x} \in \mathbb{R}^N $ for the matrix $\bm{B}$, the scalar value can be written as
+\[ \bm{x}^T\bm{B}\bm{x} = \bm{x}^T\bm{A}^T\bm{A}\bm{x} = (\bm{A}\bm{x})^T(\bm{A}\bm{x}) = (\bm{A}\bm{x})^2 \geq 0 \]
+So the matrix $\bm{B}$ is positive semi-definite for any choice of $\bm{A}$.
+
+\section*{Problem 7}
+a)
+\begin{enumerate}
+	\item Using the second partial derivatives of function $f$, that is
+	\[ \mathrm{d}_x^2 f(x) = \mathrm{d}_x(ax+b) = a\]
+	So when $a>0$, then f(x) becomes a strictly convex quadratic function, which has at most one global minimum.\\
+	
+	\item When $a=b=0$, then f(x) is a constant function, so each point of x is the solution of the minimum value of f(x).\\
+	
+	\item When $a<0$, then f(x) becomes a strictly concave function; or when $a=0,b\not =0$, whose minimum value lies on infinity. In both situation, there is no solution for the optimization.\\
+\end{enumerate}
+b) Now we try to equal the first partial derivatives of function $f$ to zero, that is 
+\[ \mathrm{d}_x f(x) = ax+b = 0\]
+So the point $ x = -\frac{b}{a} $ minimizes the objective function. 
+
+\section*{Problem 8}
+a) Now that the matrix is symmetric and positive simidefinite, so the Hessian $\nabla_x^2 g(\bm{x})$ of the objective function is shown as below:
+\[ \nabla_x^2 g(\bm{x}) = \nabla_x^2[(\frac{1}{2})\bm{x}^T\bm{A}\bm{x} + \bm{bx}^T + c] = \bm{A} \]
+Similar to $\bm{\mathrm{Problem 7}}$, when $\bm{A} > 0$, which means that the matrix is positive definite, then the optimization problem becomes a strictly convex function(See definition in reference \cite{ConvexFuction})
+
+b) If $\bm{A}$ is positive definite, then we can find a unique solution for the optimization at the point where the gradient of the function is zero; if $\bm{A}$ is positive semidefinite, then we might find the solution at infinity. However, when $\bm{A}$ has a negative eigenvalue, which means that the matrix is indefinite, the function $g(x)$ may even become a concave function, so we may not find the solution for the optimization. 
+
+c) Now that $\bm{A}$ is positive definite(PD), so we just try to equal the gradient of the function to zero to figure out the result, that is:
+\[ \nabla_x g(\bm{x}) = \nabla_x [(\frac{1}{2})\bm{x}^T\bm{A}\bm{x} + \bm{bx}^T + c] = \bm{Ax} + \bm{b} = 0 \] 
+So we can get to the point that when the matrix $\bm{A}$ is positive definite (PD), then this optimization problem $g(\bm{x})$ will have a unique solution at the point $\bm{x}=-\bm{A}^{-1}\bm{b}$.
+
+\section*{Problem 9}
+According to \[p(A|B,C)=\frac{p(A,B,C)}{p(B,C)}=\frac{\frac{p(A,B,C)}{p(C)}}{\frac{p(B,C)}{p(C)}} = \frac{p(A,B|C)}{p(B|C)} = p(A|C) \]
+that is 
+\[ p(A,B|C) = p(A|C)p(B|C)\]
+so we can say that two events A and B are conditionally independent given an event C with $P(C)>0$. However, according to reference \cite{CI}, conditional independence cannot lead to the concept of independence.
+Here is an example. Assuming that a box contains two coins: a regular coin and one irregular coin with $(P(H)=1)$. Now choose a coin at random and toss it twice. Define the following events.
+\begin{itemize}
+	\item A = First coin toss results in an H.
+	\item B = Second coin toss results in an H.
+	\item C = The regular coin has been chosen.
+\end{itemize}
+From this example we can get that $p(A|B,C)=p(A|C)=\frac{1}{2}$, then we can calculate that
+\[ p(A,B) = p(A,B|C)+p(A,B|\overline{C})=\frac{1}{2} \cdot \frac{1}{2} \cdot \frac{1}{2}+1 \cdot 1 \cdot \frac{1}{2} =\frac{5}{8} \]
+whereas
+\[ p(A) = p(A|C)+p(A|\overline{C}) = \frac{1}{2} \cdot \frac{1}{2} + 1 \cdot \frac{1}{2} = \frac{3}{4} \]
+\[ p(B) = p(B|C)+p(B|\overline{C}) = \frac{1}{2} \cdot \frac{1}{2} + 1 \cdot \frac{1}{2} = \frac{3}{4}\]
+On this condition $ p(A,B) \not= p(A)p(B)$, so this statement is wrong.
+\section*{Problem 10}
+When $p(A|B,C) = p(A|C)$, we can get the information that A and B are conditionally independent when given C. But generally speaking, conditional independence neither implies (nor is it implied by) independence, which is the information in $p(A|B) = p(A)$.
+Consider rolling a die and let \[ A=\{1,2\}, B=\{2,4,5\},C=\{1,4\}\]
+so we can get \[p(A) = \frac{1}{3},p(B) = \frac{1}{2},p(A,B) = \frac{1}{6} = p(A)p(B)\]
+which means A and B are independent. But we can also figure that
+\[ p(A|B,C) = \frac{p(\{1,2\})}{p(\{4\})} = 0, p(A|C) \frac{p(\{1,2\})}{p(\{1,4\})}= \frac{1}{2}\]
+so the statement is false.
+
+\section*{Problem 11}
+This problem is based on the concept of probability density function, more details can be found in reference \cite{cs229-prob}. According to the concept, we can directly write down the corresponding formular as below:\\
+(1)  \[p(a) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}p(a,b,c)\mathrm{d}b\mathrm{d}c\]
+(2) \[p(c|a,b) = \frac{p(a,b,c)}{p(a,b)} = \frac{p(a,b,c)}{\int_{-\infty}^{\infty}p(a,b,c)\mathrm{d}c}\]
+(3)\[p(b|c) = \frac{p(b,c)}{p(c)}=\frac{\int_{-\infty}^{\infty}p(a,b,c)\mathrm{d}a}{\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}p(a,b,c)\mathrm{d}a\mathrm{d}b}\]
+
+\section*{Problem 12}
+The probability that a person has a positive test result is
+\[ \frac{1}{1000} \times 0.95 + \frac{999}{1000} \times 0.05 = \frac{5090}{100000}\]
+So when man obtains a positive result, his/her probability of having the disease is
+\[ \frac{\frac{1}{1000} \times 0.95}{\frac{1}{1000} \times 0.95 + \frac{999}{1000} \times 0.05} = \frac{19}{1018} = 0.0187\]
+
+\section*{Problem 13}
+Since the mean value of a Gaussian distribution is $\mu$, using the property that $Var[X] = E[X^2] + E[X]^2$, we can easily figure out that
+$E[f(x)]=a\mu+b(\mu^2+\sigma^2)+c$
+
+\section*{Problem 14}
+Assume $\bm{x} \sim \mathcal{N}(\bm{m}, \sum) $, according to reference \citealp{IMM2012-03274}, we have the following conclusion:
+\begin{eqnarray}
+E[\bm{Ax}] & = & \bm{A}E[\bm{x}]\label{exceptation of Ax} \\
+E(\bm{xx}^T) & = & \sum + \bm{mm}^T\label{exceptation of symmetric x and x} \\
+Var[\bm{Ax}] & = & \bm{A}Var[\bm{x}]\bm{A}^T \label{variance of Ax}\\
+E[\bm{x}^T\bm{Ax}] & = & Tr(\bm{A}\sum) + \bm{m}^T\bm{Am}\label{exceptation of symmetric x and Ax}
+\end{eqnarray}
+
+\begin{itemize}
+	\item Using the Equation \ref{exceptation of Ax}, we can get that\[E[g(\bm{x})] = E[\bm{Ax}] = \bm{A}E[\bm{x}] = \bm{A\mu}\]
+	
+	\item Since $g(\bm{x})=\bm{Ax} \sim \mathcal{N}(\bm{A\mu}, \bm{A}\sum\bm{A}^T) $, so according to the Equation \ref{exceptation of symmetric x and x}, we can get
+	\[E[g(\bm{x})g(\bm{x})^T] = E[\bm{Axx}^T\bm{A}^T] = \bm{A}E[\bm{xx}^T]\bm{A}^T = \bm{A}(\sum + \bm{\mu} \bm{\mu}^T)\bm{A}^T \]
+	
+ 	\item Since $g(\bm{x})=\bm{Ax} \sim \mathcal{N}(\bm{A\mu}, \bm{A}\sum\bm{A}^T) $, the changing the Equation \ref{exceptation of symmetric x and Ax} by replacing $\bm{A}$ by an Identity matrix $\bm{I}$, we can get the result as below:
+ 	\[ E[g(\bm{x})^Tg(\bm{x})] = E[g(\bm{x})^T\bm{I}g(\bm{x})] = Tr(\bm{A} \sum \bm{A}^T) + \bm{\mu}^T\bm{A}^T\bm{A}\bm{\mu}\]
+ 	
+ 	\item Here we use the Equation \ref{variance of Ax}, we can simply get the result that:
+ 	\[Cov[g(\bm{x})] = Cov[\bm{Ax}, \bm{Ax}] = \bm{A}Cov[\bm{x},\bm{x}]\bm{A}^T = \bm{A}Var(\bm{x})\bm{A}^T = \bm{A}\sum \bm{A}^T\]
+\end{itemize}
+
+% References
+\small
+\bibliographystyle{plain}
+\bibliography{bibliography5}
+\end{document}
